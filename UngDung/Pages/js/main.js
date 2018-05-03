@@ -1,0 +1,175 @@
+// asdas
+var Data;
+
+jQuery(document).ready(function($){
+    
+    // jQuery sticky Menu
+    
+	$(".mainmenu-area").sticky({topSpacing:0});
+    
+    
+    $('.product-carousel').owlCarousel({
+        loop:true,
+        nav:true,
+        margin:20,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+            },
+            600:{
+                items:2,
+            },
+            1000:{
+                items:4,
+            }
+        }
+    });  
+    
+    $('.related-products-carousel').owlCarousel({
+        loop:true,
+        nav:true,
+        margin:10,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:2
+            },
+            1000:{
+                items:3
+            }
+        }
+    });  
+    
+    $('.brand-list').owlCarousel({
+        loop:true,
+        nav:true,
+        margin:20,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+            },
+            600:{
+                items:3,
+            },
+            1000:{
+                items:4,
+            }
+        }
+    });    
+    
+    
+    // Bootstrap Mobile Menu fix
+    $(".navbar-nav li a").click(function(){
+        $(".navbar-collapse").removeClass('in');
+    });    
+    
+    // jQuery Scroll effect
+    $('.navbar-nav li a, .scroll-to-up').bind('click', function(event) {
+        var $anchor = $(this);
+        var headerH = $('.header-area').outerHeight();
+        $('html, body').stop().animate({
+            scrollTop : $($anchor.attr('href')).offset().top - headerH + "px"
+        }, 1200, 'easeInOutExpo');
+
+        event.preventDefault();
+    });    
+    
+    // Bootstrap ScrollPSY
+    // $('body').scrollspy({ 
+    //     target: '.navbar-collapse',
+    //     offset: 95
+    // })      
+
+    $(".search-input").each(function(){
+        $(this).width($(this).parent().width())
+    })
+
+    $(".search-button").each(function(){
+        $(this).width($(".search-input"))
+    })
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $("#coffee").submit(function(){
+        for(var i = 1;i<=20;i++)
+        {
+            if (i<10){  
+                var str = `     
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-shop-product">
+                        <div class="product-upper">
+                            <img src="../img/products/CAFE/${ele.id}.jpg" alt="">
+                        </div>
+                        <div class="nameInList">
+                            <a href="single-product.html" data-toggle="tooltip" data-placement="auto top" title='${ele.name}'>${ele.name}</a>
+                        </div>
+                        <div class="product-carousel-price">
+                            <ins>${dotNum(ele.price)}</ins>
+                        </div>
+                    </div>
+                </div>`
+                
+            }
+            else{
+              
+            }
+        }
+    })
+
+    $("#signInForm").submit(function(){
+        var check = true
+        if($("#signPassword").val() != $("#signPassword2").val())
+        {
+            $("#passwordError").html("Mật khẩu nhập lại không đúng")
+            check = false
+        }
+        else
+            $("#passwordError").html("")
+            
+        var response = grecaptcha.getResponse();
+        if(response.length == 0)
+        {
+            $("#captchaError").html("Xin hãy xác nhận captcha")
+            check = false
+        }
+        else
+            $("#captchaError").html("")
+            
+        if(check)
+        {
+            alert("Đăng kí thành công!")
+            window.location.href = "../loged in/home_login.html";
+        }
+
+        return false        
+    })
+
+    $(".dropdown").mouseleave(function(){
+        $(this).find(".dropdown-toggle").dropdown("toggle")
+    })
+});
+
+//Sign in
+// var onloadCallback = function() {
+//     alert("grecaptcha is ready!");
+//   };
+
+function readXML()
+{
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var text = this.responseText;
+            parser = new DOMParser();
+            var xml = parser.parseFromString(text,"text/html");
+            Data = xml.getElementsByTagName("DanhSachSanPham");
+        }
+    };
+    xhttp.open("GET", "../xml/danhsachmathang.xml", true);
+    xhttp.send();
+}

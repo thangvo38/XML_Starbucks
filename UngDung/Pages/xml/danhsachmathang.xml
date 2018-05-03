@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CuaHangStarbucks xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<DanhSachSanPham>
+		<SanPham MaSP="CAFE_01" Ten="Hazelnut Macchiato" GiaBan="50000" TamNgung="false" MoTa="Freshly steamed milk with vanilla syrup, marked with espresso and finished with hazelnut drizzle.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_02" Ten="Ristretto Bianco" GiaBan="70000" TamNgung="false" MoTa="An extra ristretto shot ensures that it’s bolder than a latte, yet steamed milk keeps it smoother than a cappuccino. But perfection doesn't end there—the technique for steaming and pouring the milk requires close attention as well. Steamed milk is folded into itself creating a velvety microfoam that gives the Ristretto Bianco its silky texture and signature white dot.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_03" Ten="Asian Dolce Latte" GiaBan="67000" TamNgung="false" MoTa="Double-shots of the premium, dark-roasted Starbucks Espresso Roast, combine with the uniquely developed dolce sauce.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_04" Ten="Caffe Americano" GiaBan="47000" TamNgung="false" MoTa="Espresso shots are topped with hot water to produce a light layer of crema. The result is this wonderfully rich cup with depth and nuance.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_05" Ten="Caffe Latte" GiaBan="65000" TamNgung="false" MoTa="Our dark, rich espresso balanced with steamed milk and a light layer of foam. A perfect milk forward warm up.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_06" Ten="Caffe Mocha" GiaBan="85000" TamNgung="false" MoTa="We combine our rich, full-bodied espresso with bittersweet mocha sauce and steamed milk, then top it off with sweetened whipped cream. The classic coffee drink to satisfy your sweet tooth.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_07" Ten="Freshly brewed coffee" GiaBan="42000" TamNgung="false" MoTa="Artfully roasted and brewed fresh all day long, every day">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_08" Ten="Cold Brew" GiaBan="55000" TamNgung="false" MoTa="Just before serving, our slow-steeped custom blend Nariño 70 Cold Brew is topped with a delicate float of house-made vanilla sweet cream that cascades throughout the cup.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_09" Ten="Cappuccino" GiaBan="62000" TamNgung="false" MoTa="Dark, rich espresso lies in wait under a smoothed and stretched layer of thick foam. It's truly the height of our baristas' craft.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_10" Ten="Caramel Macchiato" GiaBan="72000" TamNgung="false" MoTa="Freshly steamed milk with vanilla-flavored syrup is marked with espresso and topped with caramel drizzle for an oh-so-sweet finish.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_11" Ten="Espresso" GiaBan="40000" TamNgung="false" MoTa="Our smooth signature Espresso Roast with rich flavor and caramelly sweetness is at the very heart of everything we do.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_12" Ten="Espresso Con Panna" GiaBan="40000" TamNgung="false" MoTa="Espresso meets a dollop of whipped cream to enhance the rich and caramelly flavors of a straight-up shot.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_13" Ten="Espresso Macchiato" GiaBan="55000" TamNgung="false" MoTa="Our rich espresso marked with dollop of steamed milk and foam. A European-style classic.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_14" Ten="Iced Caffe Americano " GiaBan="47000" TamNgung="false" MoTa="Espresso shots are topped with water to produce a light layer of crema, then served over ice. The result is this wonderfully rich cup with depth and nuance.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_15" Ten="Iced Caffe Latte" GiaBan="65000" TamNgung="false" MoTa="Our dark, rich espresso is combined with milk and served over ice. A perfect milk forward cool down.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_16" Ten="Iced Caffe Mocha" GiaBan="85000" TamNgung="false" MoTa="Espresso combined with bittersweet mocha sauce and milk over ice. Topped with sweetened whipped cream.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_17" Ten="Iced Caramel Macchiato" GiaBan="72000" TamNgung="false" MoTa="We combine our rich, full-bodied espresso with vanilla-flavored syrup, milk and ice, then top it off with caramel drizzle for an oh-so-sweet finish.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_18" Ten="Latte Macchiato" GiaBan="75000" TamNgung="false" MoTa="This espresso classic has espresso shots slowly poured over lightly aerated milk for a bold and roasty new way to sip.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_19" Ten="Iced Latte Macchiato" GiaBan="75000" TamNgung="false" MoTa="This new espresso classic combines shots of espresso, whole milk and ice for a bold and roasty new way to sip.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="CAFE_20" Ten="Signature hot chocolate" GiaBan="62000" TamNgung="false" MoTa="European-style hot chocolate, topped with sweetened whipped cream and a dusting of cocoa powder.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		</SanPham>
+		<SanPham MaSP="FRAPBLENDED_01" Ten="Asian Dolce Frappuccino® Blended Coffee" GiaBan="90000" TamNgung="false" MoTa="Double-shots of the premium, dark-roasted Starbucks Espresso Roast, combine with the uniquely developed dolce sauce.">
+			<LoaiSP MaLoai="FRAPBLENDED" Ten="Frap Blended"/>
+		</SanPham>
+		<SanPham MaSP="FRAPBLENDED_02" Ten="Coffee Frappuccino® Blended Coffee" GiaBan="80000" TamNgung="false" MoTa="Coffee meets milk and ice in a blender for a rumble and tumble and together they create one of our original Frappuccino® beverages.">
+			<LoaiSP MaLoai="FRAPBLENDED" Ten="Frap Blended"/>
+		</SanPham>
+		<SanPham MaSP="FRAPBLENDED_03" Ten="Coffee Light Frappuccino® Blended Coffee" GiaBan="75000" TamNgung="false" MoTa="Starbucks® coffee is blended with nonfat milk and ice for a sip on the light side.">
+			<LoaiSP MaLoai="FRAPBLENDED" Ten="Frap Blended"/>
+		</SanPham>
+		<SanPham MaSP="FRAPBLENDED_04" Ten="Espresso Frappuccino® Blended Coffee" GiaBan="95000" TamNgung="false" MoTa="Coffee is combined with a shot of espresso and milk, then blended with ice to give you a nice little jolt and lots of sipping joy.">
+			<LoaiSP MaLoai="FRAPBLENDED" Ten="Frap Blended"/>
+		</SanPham>
+		<SanPham MaSP="FRAPBLENDED_05" Ten="Espresso Light Frappuccino® Blended Coffee" GiaBan="90000" TamNgung="false" MoTa="Frappuccino® roast coffee is combined with a shot of espresso and nonfat milk, then blended with ice. Sip the light fantastic.">
+			<LoaiSP MaLoai="FRAPBLENDED" Ten="Frap Blended"/>
+		</SanPham>
+		<SanPham MaSP="FRAPBLENDED_06" Ten="Caramel Frappuccino® Blended Coffee" GiaBan="90000" TamNgung="false" MoTa="Buttery caramel syrup meets coffee, milk and ice for a rendezvous in the blender. Then whipped cream and caramel sauce layer the love on top.">
+			<LoaiSP MaLoai="FRAPBLENDED" Ten="Frap Blended"/>
+		</SanPham>
+		<SanPham MaSP="FRAPBLENDED_07" Ten="Caramel Frappuccino® Light Blended Coffee" GiaBan="85000" TamNgung="false" MoTa="Buttery caramel syrup is combined with Frappuccino® roast coffee and nonfat milk, then blended with ice. Sip up the same awesome taste, just with fewer calories.">
+			<LoaiSP MaLoai="FRAPBLENDED" Ten="Frap Blended"/>
+		</SanPham>
+		<SanPham MaSP="FRAPBLENDED_08" Ten="Mocha Frappuccino® Blended Coffee" GiaBan="90000" TamNgung="false" MoTa="Mocha sauce, Frappuccino® roast coffee, milk and ice all come together for a mocha flavor that'll leave you wanting more.">
+			<LoaiSP MaLoai="FRAPBLENDED" Ten="Frap Blended"/>
+		</SanPham>
+		<SanPham MaSP="FRAPBLENDED_09" Ten="Mocha Frappuccino® Light Blended Coffee" GiaBan="85000" TamNgung="false" MoTa="Mocha sauce, coffee and nonfat milk is blended with ice. One sip and your tastebuds will do the mochamotion.">
+			<LoaiSP MaLoai="FRAPBLENDED" Ten="Frap Blended"/>
+		</SanPham>
+		<SanPham MaSP="FRAPBLENDED_10" Ten="Java Chip Frappuccino® Blended Coffee" GiaBan="95000" TamNgung="false" MoTa="We blend mocha sauce and Frappuccino® chips with coffee and milk and ice, then top with whipped cream and mocha drizzle to bring you endless java joy.">
+			<LoaiSP MaLoai="FRAPBLENDED" Ten="Frap Blended"/>
+		</SanPham>
+		<SanPham MaSP="FRAPBLENDED_11" Ten="Java Chip Frappuccino® Light Blended Coffee" GiaBan="90000" TamNgung="false" MoTa="Mocha sauce, Frappuccino® chips are blended with coffee and nonfat milk and ice. It's a lighter chip off the original java block.">
+			<LoaiSP MaLoai="FRAPBLENDED" Ten="Frap Blended"/>
+		</SanPham>
+		<SanPham MaSP="FRAPBLENDED_12" Ten="Cinnamon Dolce Frappuccino® Blended Coffee" GiaBan="90000" TamNgung="false" MoTa="Coffee with cinnamon dolce flavored syrup, blended with milk and ice. Topped with sweetened whipped cream and our cinnamon dolce topping.">
+			<LoaiSP MaLoai="FRAPBLENDED" Ten="Frap Blended"/>
+		</SanPham>
+		<SanPham MaSP="FRAPBLENDED_13" Ten="Cinnamon Dolce Light Frappuccino® Blended Coffee" GiaBan="85000" TamNgung="false" MoTa="Coffee flavored with cinnamon syrup, blended with milk and ice – and fewer calories.">
+			<LoaiSP MaLoai="FRAPBLENDED" Ten="Frap Blended"/>
+		</SanPham>
+		<SanPham MaSP="FRAPBLENDED_14" Ten="Crystal Ball Frappuccino®" GiaBan="95000" TamNgung="false" MoTa="A mystical, turquoise peach infusion Frappuccino® Crème blended beverage topped with peach flavored whipped cream and one of three different candy gems that reveal your fortune. Order, gaze, then all will be told. And while we can't predict what your gems will reveal, we can tell you this drink is only here for a few short days.">
+			<LoaiSP MaLoai="FRAPBLENDED" Ten="Frap Blended"/>
+		</SanPham>
+		<SanPham MaSP="FRAPCREAM_01" Ten="Vanilla Cream Frappuccino® Blended Beverage" GiaBan="90000" TamNgung="false" MoTa="This rich and creamy blend of vanilla bean, milk and ice topped with whipped cream takes va-va-vanilla flavor to another level. To change things up, try it Affogato-style by adding an Affogato-style shot: a hot espresso shot poured right over the top. (Additional 80 cents.)">
+			<LoaiSP MaLoai="FRAPCREAM" Ten="Frap Cream"/>
+		</SanPham>
+		<SanPham MaSP="FRAPCREAM_02" Ten="Green Tea Cream Blended Beverage" GiaBan="95000" TamNgung="false" MoTa="We blend sweetened premium matcha green tea, milk and ice and top it with sweetened whipped cream to give you a delicious boost of energy.">
+			<LoaiSP MaLoai="FRAPCREAM" Ten="Frap Cream"/>
+		</SanPham>
+		<SanPham MaSP="FRAPCREAM_03" Ten="Chocolate Crème Frappuccino® Blended Beverage" GiaBan="95000" TamNgung="false" MoTa="Rich mocha-flavored sauce meets up with chocolaty chips, milk and ice for a blender bash. Top it off with sweetened whipped cream and mocha drizzle for a real party in your mouth.">
+			<LoaiSP MaLoai="FRAPCREAM" Ten="Frap Cream"/>
+		</SanPham>
+		<SanPham MaSP="FRAPCREAM_04" Ten="Mango Passion Fruit Blended Juice" GiaBan="80000" TamNgung="false" MoTa="A tropical mango and passionfruit infusion, perfectly blended with a fruity hibiscus tea and ice.">
+			<LoaiSP MaLoai="FRAPCREAM" Ten="Frap Cream"/>
+		</SanPham>
+		<SanPham MaSP="FRAPCREAM_05" Ten="Raspberry Black Currant Blended Juice" GiaBan="80000" TamNgung="false" MoTa="Tangy raspberry and blackcurrant juices blended with green tea and ice.">
+			<LoaiSP MaLoai="FRAPCREAM" Ten="Frap Cream"/>
+		</SanPham>
+		<SanPham MaSP="FRAPCREAM_06" Ten="Caramel Crème Blended Beverage" GiaBan="90000" TamNgung="false" MoTa="A rich and creamy blend of caramel syrup, milk and ice. Topped with sweetened whipped cream and a delicious caramel drizzle">
+			<LoaiSP MaLoai="FRAPCREAM" Ten="Frap Cream"/>
+		</SanPham>
+		<SanPham MaSP="TEA_01" Ten="Chai Tea" GiaBan="59000" TamNgung="false" MoTa="A satisfyingly rich blend of black teas and exotic spices.">
+			<LoaiSP MaLoai="TEA" Ten="Tea"/>
+		</SanPham>
+		<SanPham MaSP="TEA_02" Ten="Chai Tea Latte" GiaBan="79000" TamNgung="false" MoTa="Black tea infused with cinnamon, clove, and other warming spices is combined with steamed milk and topped with foam for the perfect balance of sweet and spicy.">
+			<LoaiSP MaLoai="TEA" Ten="Tea"/>
+		</SanPham>
+		<SanPham MaSP="TEA_03" Ten="Iced Chai Tea Latte" GiaBan="79000" TamNgung="false" MoTa="Black tea infused with cinnamon, clove, and other warming spices are combined with milk and ice for the perfect balance of sweet and spicy.">
+			<LoaiSP MaLoai="TEA" Ten="Tea"/>
+		</SanPham>
+		<SanPham MaSP="TEA_04" Ten="Green Tea Latte" GiaBan="62000" TamNgung="false" MoTa="Smooth and creamy matcha is lightly sweetened and served with steamed milk. A perfect zen.">
+			<LoaiSP MaLoai="TEA" Ten="Tea"/>
+		</SanPham>
+		<SanPham MaSP="TEA_05" Ten="English Breakfast Tea Latte" GiaBan="62000" TamNgung="false" MoTa="A select blend of rich, full leaf black teas from India and Sri Lanka are lightly sweetened with liquid cane sugar and topped with steamed milk and a velvety foam">
+			<LoaiSP MaLoai="TEA" Ten="Tea"/>
+		</SanPham>
+		<SanPham MaSP="TEA_06" Ten="Iced Shaken Lemon Tea" GiaBan="65000" TamNgung="false" MoTa="Dark black tea. Sunny lemonade. Can such contradictory figures truly coexist in one delightfully refreshing drink? Thankfully, in this case opposites not only attract, they form the perfect marriage. Better yet, no one has to make any compromises – especially not in the flavour department.">
+			<LoaiSP MaLoai="TEA" Ten="Tea"/>
+		</SanPham>
+		<SanPham MaSP="TEA_07" Ten="Earl Grey Tea Latte" GiaBan="62000" TamNgung="false" MoTa="Bright, citrusy spark of Italian bergamot blends with subtle hints of lavender, vanilla syrup, and steamed milk for this frothy reinvention of classic Earl Grey tea.">
+			<LoaiSP MaLoai="TEA" Ten="Tea"/>
+		</SanPham>
+		<SanPham MaSP="TEA_08" Ten="Earl Grey Black Tea" GiaBan="47000" TamNgung="false" MoTa="We take a strong black tea base and add the essence of bergamot, a citrus fruit with subtle lemon and floral lavender notes, to create this aromatically awesome tea flavor.">
+			<LoaiSP MaLoai="TEA" Ten="Tea"/>
+		</SanPham>
+		<SanPham MaSP="TEA_09" Ten="Iced Shaken Hibiscus Tea" GiaBan="70000" TamNgung="false" MoTa="The bright smile of sprightly lemon meets the gentle faces of green tea or invigorating hibiscus. Harmonized with ice, shaken to perfection.">
+			<LoaiSP MaLoai="TEA" Ten="Tea"/>
+		</SanPham>
+		<SanPham MaSP="TEA_10" Ten="Black Shaken Iced Tea" GiaBan="55000" TamNgung="false" MoTa="Premium black tea is lightly sweetened and shaken with ice. It's the ideal iced tea.">
+			<LoaiSP MaLoai="TEA" Ten="Tea"/>
+		</SanPham>
+	</DanhSachSanPham>
+</CuaHangStarbucks>
