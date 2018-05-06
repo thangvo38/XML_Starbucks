@@ -1,3 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><SanPham MaSP="FRAPBLENDED_08" Ten="Mocha Frappuccino® Blended Coffee" GiaBan="90000" TamNgung="false" MoTa="Mocha sauce, Frappuccino® roast coffee, milk and ice all come together for a mocha flavor that'll leave you wanting more.">
+<?xml version="1.0" encoding="UTF-8"?>
+<SanPham MaSP="FRAPBLENDED_08" Ten="Mocha Frappuccino® Blended Coffee" GiaBan="90000" TamNgung="false" MoTa="Mocha sauce, Frappuccino® roast coffee, milk and ice all come together for a mocha flavor that'll leave you wanting more.">
 			<LoaiSP MaLoai="FRAPBLENDED" Ten="Frap Blended"/>
-		<DanhSachBanHang/></SanPham>
+		</SanPham>

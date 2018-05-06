@@ -1,3 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><SanPham MaSP="FRAPBLENDED_12" Ten="Cinnamon Dolce Frappuccino® Blended Coffee" GiaBan="90000" TamNgung="false" MoTa="Coffee with cinnamon dolce flavored syrup, blended with milk and ice. Topped with sweetened whipped cream and our cinnamon dolce topping.">
+<?xml version="1.0" encoding="UTF-8"?>
+<SanPham MaSP="FRAPBLENDED_12" Ten="Cinnamon Dolce Frappuccino® Blended Coffee" GiaBan="90000" TamNgung="false" MoTa="Coffee with cinnamon dolce flavored syrup, blended with milk and ice. Topped with sweetened whipped cream and our cinnamon dolce topping.">
 			<LoaiSP MaLoai="FRAPBLENDED" Ten="Frap Blended"/>
-		<DanhSachBanHang/></SanPham>
+		</SanPham>

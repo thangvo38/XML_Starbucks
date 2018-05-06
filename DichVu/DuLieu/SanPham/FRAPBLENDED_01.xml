@@ -1,3 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><SanPham MaSP="FRAPBLENDED_01" Ten="Asian Dolce Frappuccino® Blended Coffee" GiaBan="90000" TamNgung="false" MoTa="Double-shots of the premium, dark-roasted Starbucks Espresso Roast, combine with the uniquely developed dolce sauce.">
+<?xml version="1.0" encoding="UTF-8"?>
+<SanPham MaSP="FRAPBLENDED_01" Ten="Asian Dolce Frappuccino® Blended Coffee" GiaBan="90000" TamNgung="false" MoTa="Double-shots of the premium, dark-roasted Starbucks Espresso Roast, combine with the uniquely developed dolce sauce.">
 			<LoaiSP MaLoai="FRAPBLENDED" Ten="Frap Blended"/>
-		<DanhSachBanHang/></SanPham>
+		</SanPham>

@@ -1,3 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><SanPham MaSP="CAFE_15" Ten="Iced Caffe Latte" GiaBan="65000" TamNgung="false" MoTa="Our dark, rich espresso is combined with milk and served over ice. A perfect milk forward cool down.">
+<?xml version="1.0" encoding="UTF-8"?>
+<SanPham MaSP="CAFE_15" Ten="Iced Caffe Latte" GiaBan="65000" TamNgung="false" MoTa="Our dark, rich espresso is combined with milk and served over ice. A perfect milk forward cool down.">
 			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
-		<DanhSachBanHang/></SanPham>
+		</SanPham>

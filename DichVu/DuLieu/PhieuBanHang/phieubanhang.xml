@@ -2,8 +2,8 @@
 <DanhSachPhieuBanHang>
 	<PhieuBanHang MaPhieu="P_1" Ngay="04-01-2018" HoTen="Vũ Minh Quân" DienThoai="0909090909" DiaChi="69 Phú Mỹ Hưng" HoTenNhanVien="Võ Hữu Thắng" TongTien="140000">
 		<DanhSachSanPham>
-			<SanPham MaSP="CAFE_01" SoLuong="1" GiaBan="50000"/>
-			<SanPham MaSP="FRAPBLENDED_01" SoLuong="1" GiaBan="90000"/>
+			<SanPham MaSP="CAFE_01" Ten="Hazelnut Macchiato" SoLuong="1" GiaBan="50000"/>
+			<SanPham MaSP="FRAPBLENDED_01" Ten="Asian Dolce Frappuccino® Blended Coffee" SoLuong="1" GiaBan="90000"/>
 		</DanhSachSanPham>
 	</PhieuBanHang>
 </DanhSachPhieuBanHang>

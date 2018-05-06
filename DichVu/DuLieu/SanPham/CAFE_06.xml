@@ -1,3 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><SanPham MaSP="CAFE_06" Ten="Caffe Mocha" GiaBan="85000" TamNgung="false" MoTa="We combine our rich, full-bodied espresso with bittersweet mocha sauce and steamed milk, then top it off with sweetened whipped cream. The classic coffee drink to satisfy your sweet tooth.">
+<?xml version="1.0" encoding="UTF-8"?>
+<SanPham MaSP="CAFE_06" Ten="Caffe Mocha" GiaBan="85000" TamNgung="false" MoTa="We combine our rich, full-bodied espresso with bittersweet mocha sauce and steamed milk, then top it off with sweetened whipped cream. The classic coffee drink to satisfy your sweet tooth.">
 			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
-		<DanhSachBanHang/></SanPham>
+		</SanPham>

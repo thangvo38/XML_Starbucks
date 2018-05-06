@@ -1,3 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><SanPham MaSP="FRAPCREAM_03" Ten="Chocolate Crème Frappuccino® Blended Beverage" GiaBan="95000" TamNgung="false" MoTa="Rich mocha-flavored sauce meets up with chocolaty chips, milk and ice for a blender bash. Top it off with sweetened whipped cream and mocha drizzle for a real party in your mouth.">
+<?xml version="1.0" encoding="UTF-8"?>
+<SanPham MaSP="FRAPCREAM_03" Ten="Chocolate Crème Frappuccino® Blended Beverage" GiaBan="95000" TamNgung="false" MoTa="Rich mocha-flavored sauce meets up with chocolaty chips, milk and ice for a blender bash. Top it off with sweetened whipped cream and mocha drizzle for a real party in your mouth.">
 			<LoaiSP MaLoai="FRAPCREAM" Ten="Frap Cream"/>
-		<DanhSachBanHang/></SanPham>
+		</SanPham>

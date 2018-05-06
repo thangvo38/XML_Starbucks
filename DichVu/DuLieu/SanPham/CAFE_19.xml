@@ -1,3 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><SanPham MaSP="CAFE_19" Ten="Iced Latte Macchiato" GiaBan="75000" TamNgung="false" MoTa="This new espresso classic combines shots of espresso, whole milk and ice for a bold and roasty new way to sip.">
+<?xml version="1.0" encoding="UTF-8"?>
+<SanPham MaSP="CAFE_19" Ten="Iced Latte Macchiato" GiaBan="75000" TamNgung="false" MoTa="This new espresso classic combines shots of espresso, whole milk and ice for a bold and roasty new way to sip.">
 			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
-		<DanhSachBanHang/></SanPham>
+		</SanPham>

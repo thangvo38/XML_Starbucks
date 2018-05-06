@@ -1,3 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><SanPham MaSP="TEA_10" Ten="Black Shaken Iced Tea" GiaBan="55000" TamNgung="false" MoTa="Premium black tea is lightly sweetened and shaken with ice. It's the ideal iced tea.">
+<?xml version="1.0" encoding="UTF-8"?>
+<SanPham MaSP="TEA_10" Ten="Black Shaken Iced Tea" GiaBan="55000" TamNgung="false" MoTa="Premium black tea is lightly sweetened and shaken with ice. It's the ideal iced tea.">
 			<LoaiSP MaLoai="TEA" Ten="Tea"/>
-		<DanhSachBanHang/></SanPham>
+		</SanPham>
