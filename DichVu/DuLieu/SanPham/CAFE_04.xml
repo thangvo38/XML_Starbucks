@@ -1,3 +1,3 @@
-<SanPham MaSP="CAFE_04" Ten="Caffe Americano" GiaBan="47000" TamNgung="false" MoTa="Espresso shots are topped with hot water to produce a light layer of crema. The result is this wonderfully rich cup with depth and nuance.">
+<?xml version="1.0" encoding="UTF-8"?><SanPham MaSP="CAFE_04" Ten="Caffe Americano" GiaBan="47000" TamNgung="false" MoTa="Espresso shots are topped with hot water to produce a light layer of crema. The result is this wonderfully rich cup with depth and nuance.">
 			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
 		<DanhSachBanHang/></SanPham>

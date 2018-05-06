@@ -1,3 +1,3 @@
-<SanPham MaSP="TEA_05" Ten="English Breakfast Tea Latte" GiaBan="62000" TamNgung="false" MoTa="A select blend of rich, full leaf black teas from India and Sri Lanka are lightly sweetened with liquid cane sugar and topped with steamed milk and a velvety foam">
+<?xml version="1.0" encoding="UTF-8"?><SanPham MaSP="TEA_05" Ten="English Breakfast Tea Latte" GiaBan="62000" TamNgung="false" MoTa="A select blend of rich, full leaf black teas from India and Sri Lanka are lightly sweetened with liquid cane sugar and topped with steamed milk and a velvety foam">
 			<LoaiSP MaLoai="TEA" Ten="Tea"/>
 		<DanhSachBanHang/></SanPham>

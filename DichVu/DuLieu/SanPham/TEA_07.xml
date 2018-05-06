@@ -1,3 +1,3 @@
-<SanPham MaSP="TEA_07" Ten="Earl Grey Tea Latte" GiaBan="62000" TamNgung="false" MoTa="Bright, citrusy spark of Italian bergamot blends with subtle hints of lavender, vanilla syrup, and steamed milk for this frothy reinvention of classic Earl Grey tea.">
+<?xml version="1.0" encoding="UTF-8"?><SanPham MaSP="TEA_07" Ten="Earl Grey Tea Latte" GiaBan="62000" TamNgung="false" MoTa="Bright, citrusy spark of Italian bergamot blends with subtle hints of lavender, vanilla syrup, and steamed milk for this frothy reinvention of classic Earl Grey tea.">
 			<LoaiSP MaLoai="TEA" Ten="Tea"/>
 		<DanhSachBanHang/></SanPham>

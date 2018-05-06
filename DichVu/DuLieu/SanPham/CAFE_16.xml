@@ -1,3 +1,3 @@
-<SanPham MaSP="CAFE_16" Ten="Iced Caffe Mocha" GiaBan="85000" TamNgung="false" MoTa="Espresso combined with bittersweet mocha sauce and milk over ice. Topped with sweetened whipped cream.">
+<?xml version="1.0" encoding="UTF-8"?><SanPham MaSP="CAFE_16" Ten="Iced Caffe Mocha" GiaBan="85000" TamNgung="false" MoTa="Espresso combined with bittersweet mocha sauce and milk over ice. Topped with sweetened whipped cream.">
 			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
 		<DanhSachBanHang/></SanPham>

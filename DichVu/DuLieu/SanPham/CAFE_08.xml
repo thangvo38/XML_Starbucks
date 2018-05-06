@@ -1,3 +1,3 @@
-<SanPham MaSP="CAFE_08" Ten="Cold Brew" GiaBan="55000" TamNgung="false" MoTa="Just before serving, our slow-steeped custom blend Nariño 70 Cold Brew is topped with a delicate float of house-made vanilla sweet cream that cascades throughout the cup.">
+<?xml version="1.0" encoding="UTF-8"?><SanPham MaSP="CAFE_08" Ten="Cold Brew" GiaBan="55000" TamNgung="false" MoTa="Just before serving, our slow-steeped custom blend Nariño 70 Cold Brew is topped with a delicate float of house-made vanilla sweet cream that cascades throughout the cup.">
 			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
 		<DanhSachBanHang/></SanPham>

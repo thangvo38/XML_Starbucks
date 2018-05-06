@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DanhSachTaiKhoan>
+	<TaiKhoan id="thangvo" password="thang123" QuanLi="false"/>
+	<TaiKhoan id="quyenlam" password="quyen456" QuanLi="false"/>
+	<TaiKhoan id="huynguyen" password="huy789" QuanLi="true"/>
+</DanhSachTaiKhoan>

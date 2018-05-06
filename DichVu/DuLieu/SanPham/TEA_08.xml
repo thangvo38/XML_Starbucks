@@ -1,3 +1,3 @@
-<SanPham MaSP="TEA_08" Ten="Earl Grey Black Tea" GiaBan="47000" TamNgung="false" MoTa="We take a strong black tea base and add the essence of bergamot, a citrus fruit with subtle lemon and floral lavender notes, to create this aromatically awesome tea flavor.">
+<?xml version="1.0" encoding="UTF-8"?><SanPham MaSP="TEA_08" Ten="Earl Grey Black Tea" GiaBan="47000" TamNgung="false" MoTa="We take a strong black tea base and add the essence of bergamot, a citrus fruit with subtle lemon and floral lavender notes, to create this aromatically awesome tea flavor.">
 			<LoaiSP MaLoai="TEA" Ten="Tea"/>
 		<DanhSachBanHang/></SanPham>
