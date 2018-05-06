@@ -1,0 +1,3 @@
+<SanPham MaSP="CAFE_18" Ten="Latte Macchiato" GiaBan="75000" TamNgung="false" MoTa="This espresso classic has espresso shots slowly poured over lightly aerated milk for a bold and roasty new way to sip.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		<DanhSachBanHang/></SanPham>

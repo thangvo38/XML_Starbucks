@@ -1,0 +1,3 @@
+<SanPham MaSP="CAFE_09" Ten="Cappuccino" GiaBan="62000" TamNgung="false" MoTa="Dark, rich espresso lies in wait under a smoothed and stretched layer of thick foam. It's truly the height of our baristas' craft.">
+			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
+		<DanhSachBanHang/></SanPham>
