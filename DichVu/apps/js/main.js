@@ -152,6 +152,8 @@ jQuery(document).ready(function($){
     $(".dropdown").mouseleave(function(){
         $(this).find(".dropdown-toggle").dropdown("toggle")
     })
+
+    
 });
 
 //Sign in
@@ -159,17 +161,17 @@ jQuery(document).ready(function($){
 //     alert("grecaptcha is ready!");
 //   };
 
-function readXML()
-{
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var text = this.responseText;
-            parser = new DOMParser();
-            var xml = parser.parseFromString(text,"text/html");
-            Data = xml.getElementsByTagName("DanhSachSanPham");
-        }
-    };
-    xhttp.open("GET", "../xml/danhsachmathang.xml", true);
-    xhttp.send();
-}
+// function readXML()
+// {
+//     var xhttp = new XMLHttpRequest();
+//     xhttp.onreadystatechange = function() {
+//         if (this.readyState == 4 && this.status == 200) {
+//             var text = this.responseText;
+//             parser = new DOMParser();
+//             var xml = parser.parseFromString(text,"text/html");
+//             Data = xml.getElementsByTagName("DanhSachSanPham");
+//         }
+//     };
+//     xhttp.open("GET", "../xml/danhsachmathang.xml", true);
+//     xhttp.send();
+// }
