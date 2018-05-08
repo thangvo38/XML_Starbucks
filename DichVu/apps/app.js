@@ -157,10 +157,7 @@ http.createServer((req,res)=>{
     			break;
     		case "GET":
     			if(checkAuth(hashCode) === true){
-    				//Ở ĐÂY XỬ LÍ KHI NGƯỜI DÙNG NHẤN LOG OUT THÌ:
-						// XÓA SESSION ĐÓ
-						// GHI LẠI FILE SESSION.SS 
-						// GỬI THÔNG BÁO VÀ XỬ LÍ XÓA COOKIE Ở CLIENT
+
     				switch(req.url){
 						case '/': //XỬ LÍ ROUTE RA NHỮNG TRANG HTML CHO NHÂN VIÊN/QUẢN LÍ
 							if(hashCode[0] == '1') //Là quản lí

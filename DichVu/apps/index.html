@@ -22,13 +22,14 @@
     
     <body style="background-image: url('img/slide-1.jpg');
             background-repeat: no-repeat;
-            margin: auto auto">
+            margin: auto auto;
+            background-size: cover">
     
     <div class = "center-block" style="margin-top: 255px; width:80%; padding:50px;background-color:rgba(182, 182, 182, 0.295);">
         <div style = "padding: 10px">
             <div class = "row">
                 <div class = "col-md-4"> 
-                    <a href="products.html" type="button" ><img  class = "center-block" src = "img/guest.jpg"></a>
+                    <a id="guestSubmit" type="button" ><img  class = "center-block" src = "img/guest.jpg"></a>
                 </div>
                 <div class = "col-md-4"> 
                     <span type="button" data-toggle="modal" data-target="#StaffLogin"><img  class = "center-block" src = "img/staff.jpg"></span>
@@ -40,22 +41,22 @@
                                     <h4 class="modal-title">Staff Login:</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form id="loginForm" action = "/stafflogin" method = "post">
+                                    <form id="loginForm" method = "post">
                                         <div class="form-group">
                                             <label class="control-label">ID:</label>
-                                            <input id="loginID" name = "username" pattern="\S+" type="text" class="form-control" autocomplete="off" required>
+                                            <input id="staffLoginID" name = "username" pattern="\S+" type="text" class="form-control" autocomplete="off" required>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Password:</label>
-                                            <input id="loginPassword" name = "password" pattern="\S+" type="password" class="form-control" autocomplete="off" required>
+                                            <input id="staffLoginPassword" name = "password" pattern="\S+" type="password" class="form-control" autocomplete="off" required>
                                         </div>
-                                        <button id="loginBtn" type="submit" class="btn btn-success center-block">
+                                        <button id="staffSubmit" type="submit" class="btn btn-success center-block">
                                             <b>Login</b>
                                         </button>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button  type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
@@ -71,16 +72,16 @@
                                     <h4 class="modal-title">Admin Login:</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form id="loginForm" action = "/adminlogin" method = "post">
+                                    <form id="loginForm" method = "post">
                                         <div class="form-group">
                                             <label class="control-label">ID:</label>
-                                            <input id="loginID" name = "username" pattern="\S+" type="text" class="form-control" autocomplete="off" required>
+                                            <input id="adminLoginID" name = "username" pattern="\S+" type="text" class="form-control" autocomplete="off" required>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Password:</label>
-                                            <input id="loginPassword" name = "password" pattern="\S+" type="password" class="form-control" autocomplete="off" required>
+                                            <input id="adminLoginPassword" name = "password" pattern="\S+" type="password" class="form-control" autocomplete="off" required>
                                         </div>
-                                        <button id="loginBtn" type="submit" class="btn btn-success center-block">
+                                        <button id="adminSubmit" type="submit" class="btn btn-success center-block">
                                             <b>Login</b>
                                         </button>
                                     </form>
