@@ -1,41 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Starbucks Coffee</title>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Starbucks Coffee</title>
 
-    <!-- Bootstrap -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="bootstrap/js/jquery-3.3.1.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-    <!-- Bootstrap -->
+        <!-- Bootstrap -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="bootstrap/js/jquery-3.3.1.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+        <!-- Bootstrap -->
 
-    <!-- Custom CSS -->
+        <!-- Custom CSS -->
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/responsive.css">
-</head>
-
-<body>
-
-    <a href="/products"><button type="button" class="btn" >Login as guest</button></a>
-    <button id="viewEmployee" type="button" class="btn" >Login as employee</button>
-    <a href="products.html"><button type="button" class="btn" >Login as manager</button></a>
-  
-    <!-- jQuery sticky menu -->
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.sticky.js"></script>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/responsive.css">
+    </head>
     
-    <!-- jQuery easing -->
-    <script src="js/jquery.easing.1.3.min.js"></script>
+    <body style="background-image: url('img/slide-1.jpg');
+            background-repeat: no-repeat;
+            margin: auto auto">
     
-    <!-- Main Script -->
-    <script src="js/main.js"></script>
-    <script src="js/login.js"></script>
-    
-  </body>
+    <div class = "center-block" style="margin-top: 255px; width:80%; padding:50px;background-color:rgba(182, 182, 182, 0.295);">
+        <div style = "padding: 10px">
+            <div class = "row">
+                <div class = "col-md-4"> 
+                    <a href="products.html" type="button" ><img  class = "center-block" src = "img/guest.jpg"></a>
+                </div>
+                <div class = "col-md-4"> 
+                    <span type="button" data-toggle="modal" data-target="#StaffLogin"><img  class = "center-block" src = "img/staff.jpg"></span>
+                    <div class="modal fade" id="StaffLogin" role="dialog">
+                        <div class="modal-dialog modal-content">
+                            <div>
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Staff Login:</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="loginForm" action = "/stafflogin" method = "post">
+                                        <div class="form-group">
+                                            <label class="control-label">ID:</label>
+                                            <input id="loginID" name = "username" pattern="\S+" type="text" class="form-control" autocomplete="off" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Password:</label>
+                                            <input id="loginPassword" name = "password" pattern="\S+" type="password" class="form-control" autocomplete="off" required>
+                                        </div>
+                                        <button id="loginBtn" type="submit" class="btn btn-success center-block">
+                                            <b>Login</b>
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class = "col-md-4"> 
+                    <span type="button" data-toggle="modal" data-target="#AdminLogin"><img  class = "center-block" src = "img/Admin.jpg"></span>
+                    <div class="modal fade" id="AdminLogin" role="dialog">
+                        <div class="modal-dialog modal-content">
+                            <div>
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Admin Login:</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="loginForm" action = "/adminlogin" method = "post">
+                                        <div class="form-group">
+                                            <label class="control-label">ID:</label>
+                                            <input id="loginID" name = "username" pattern="\S+" type="text" class="form-control" autocomplete="off" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Password:</label>
+                                            <input id="loginPassword" name = "password" pattern="\S+" type="password" class="form-control" autocomplete="off" required>
+                                        </div>
+                                        <button id="loginBtn" type="submit" class="btn btn-success center-block">
+                                            <b>Login</b>
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- jQuery sticky menu -->
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/jquery.sticky.js"></script>
+        
+        <!-- jQuery easing -->
+        <script src="js/jquery.easing.1.3.min.js"></script>
+        
+        <!-- Main Script -->
+        <script src="js/main.js"></script>
+        <script src="js/login.js"></script>
+        
+    </body>
+
 </html>
