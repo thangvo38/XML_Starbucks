@@ -22,6 +22,29 @@ http.createServer((req,res)=>{
                     return
 				}
 				break
+
+				case "/getData":
+				var dir = "../DuLieu/SanPham/";
+				var data= "";
+				fs.readdir(dir, (err, files) => {
+					for(var i = 0 ;i<files.length;i++)
+					{
+						var file_dir = dir + "SP_" + i + ".xml"
+						data += fs.readFileSync(file_dir,"utf-8");
+					}
+				});
+				if(data != null){
+					res.setHeader("Access-Control-Allow-Origin", '*')
+					res.writeHeader(200, {'Content-Type': 'text/plain'})
+                    res.end(data)
+                    return
+				}
+				else{
+					res.writeHeader(404, {'Content-Type': 'text/plain'})
+                    res.end("Can't read file")
+                    return
+				}
+				break;
 			}
 		break
 	}
