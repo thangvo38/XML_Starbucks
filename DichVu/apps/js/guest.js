@@ -4,7 +4,7 @@ var data = []; // 0-cafe ; 1-tea ; 2-frap ; 3-creme
 function GetData()
 {
     var http = new XMLHttpRequest()
-    http.open("GET","http://localhost:3002/getData, true")
+    http.open("GET","http://localhost:3002/getData", true)
 
     http.setRequestHeader("Content-type", "text/plain")
 
