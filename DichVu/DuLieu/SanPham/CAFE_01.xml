@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<SanPham MaSP="CAFE_01" Ten="Hazelnut Macchiato" GiaBan="50000" TamNgung="false" MoTa="Freshly steamed milk with vanilla syrup, marked with espresso and finished with hazelnut drizzle.">
-			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
-		</SanPham>

@@ -153,25 +153,22 @@ jQuery(document).ready(function($){
         $(this).find(".dropdown-toggle").dropdown("toggle")
     })
 
+//Log out
+    $("#logOut").click(function(){
+        console.log("Clicked")
+        $.ajax({
+            type:"POST",
+            headers: {
+                "action": "logout"
+            },
+            error: function(error){
+                alert("ERROR: " + error)
+            },
+            success: function(data){
+                document.cookie = "session:" + ''
+                location.reload()
+            }
+        })
+    })
     
 });
-
-//Sign in
-// var onloadCallback = function() {
-//     alert("grecaptcha is ready!");
-//   };
-
-// function readXML()
-// {
-//     var xhttp = new XMLHttpRequest();
-//     xhttp.onreadystatechange = function() {
-//         if (this.readyState == 4 && this.status == 200) {
-//             var text = this.responseText;
-//             parser = new DOMParser();
-//             var xml = parser.parseFromString(text,"text/html");
-//             Data = xml.getElementsByTagName("DanhSachSanPham");
-//         }
-//     };
-//     xhttp.open("GET", "../xml/danhsachmathang.xml", true);
-//     xhttp.send();
-// }

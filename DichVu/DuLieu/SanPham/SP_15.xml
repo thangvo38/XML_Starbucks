@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<San_Pham Ma_so="SP_15" Ten="Iced Caffe Latte" Gia_ban="65000" Tam_ngung="false" Mo_ta="Our dark, rich espresso is combined with milk and served over ice. A perfect milk forward cool down.">
+			<Loai_SP Ma_Loai="CAFE" Ten_Loai="Coffee"/>
+		</San_Pham>

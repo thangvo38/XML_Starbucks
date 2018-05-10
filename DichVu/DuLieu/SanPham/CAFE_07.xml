@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<SanPham MaSP="CAFE_07" Ten="Freshly brewed coffee" GiaBan="42000" TamNgung="false" MoTa="Artfully roasted and brewed fresh all day long, every day">
-			<LoaiSP MaLoai="CAFE" Ten="Coffee"/>
-		</SanPham>

@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<SanPham MaSP="TEA_01" Ten="Chai Tea" GiaBan="59000" TamNgung="false" MoTa="A satisfyingly rich blend of black teas and exotic spices.">
-			<LoaiSP MaLoai="TEA" Ten="Tea"/>
-		</SanPham>
