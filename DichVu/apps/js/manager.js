@@ -6,7 +6,6 @@ $(document).ready(function(){
 function SendDataRequest(){
 	var http = new XMLHttpRequest()
     http.open("POST", "http://localhost:3002/getAllProduct", true)
-
     http.setRequestHeader("Content-type", "text/plain")
         
     http.onreadystatechange = function () {
