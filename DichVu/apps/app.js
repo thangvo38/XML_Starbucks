@@ -73,6 +73,7 @@ http.createServer((req,res)=>{
 	var getPage = false
 
 	var cookie = getCookie(req.headers.cookie,"session")
+	    console.log("cookie: " + cookie)
 	if(cookie != '')
 		console.log(cookie)
 
@@ -130,7 +131,8 @@ http.createServer((req,res)=>{
 		    					console.log(user)
 		    					if(user.id == req.headers["username"] 
 		    						&& user.password == req.headers["password"] && user.QuanLi == req.headers["manager"]){
-		    						var isManager = (user.QuanLi == true) ? '1' : '0'
+		    						var isManager = (user.QuanLi == 'true') ? '1' : '0'
+		    						console.log("Is Manager: " + isManager)
 		    						hashCode = isManager + sha256(req.headers["username"] + req.headers["password"])
 		    						break
 		    					}

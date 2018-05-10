@@ -165,7 +165,7 @@ jQuery(document).ready(function($){
                 alert("ERROR: " + error)
             },
             success: function(data){
-                document.cookie = "session:" + ''
+                document.cookie = ''
                 location.reload()
             }
         })

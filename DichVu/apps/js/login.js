@@ -8,8 +8,8 @@ jQuery(document).ready(function($){
             	alert("Unexpected Error")
             },
             success: function(data){
-                document.html().empty()
-                document.html(data)
+                $("html").empty();
+                $("html").append(data);
             }
         })
 	})

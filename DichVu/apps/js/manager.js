@@ -12,11 +12,11 @@ $(document).ready(function(){
 
 function SendDataRequest(){
 	var http = new XMLHttpRequest()
-    http.open("POST", "http://localhost:3002/getAllProducts", true)
+    http.open("GET", "http://localhost:3002/getData", true)
     http.setRequestHeader("Content-type", "text/plain")
         
     http.onreadystatechange = function () {
-        if (http.readyState == 4 && http.status == 200)
+        if (http.status == 200)
         {
             console.log("Response received")
             var xml = (new DOMParser()).parseFromString(http.response,'text/xml')
@@ -30,7 +30,8 @@ function SendDataRequest(){
 }
 
 function CreateTable(xml){
-	var products = xml.getElementsByTagsName("San_pham")
+	var products = xml.getElementsByTagName("San_pham")
+	console.log(products)
 	for(var i = 0;i<products.length;i++){
 		var catg = products[i].getElementsByTagsName("Loai_SP")
 		var div = null 
