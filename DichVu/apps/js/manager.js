@@ -3,7 +3,7 @@ $(document).ready(function(){
 	SendDataRequest()
 
 	//Lấy thông tin khi bấm nút chỉnh sửa
-	$("#editBtn").click(function(){
+	$(".editBtn").click(function(){
 		$(this).parent().siblings().each(function(){
 
 		})
@@ -13,58 +13,79 @@ $(document).ready(function(){
 function SendDataRequest(){
 	var http = new XMLHttpRequest()
     http.open("GET", "http://localhost:3002/getData", true)
-    http.setRequestHeader("Content-type", "text/plain")
         
     http.onreadystatechange = function () {
-        if (http.status == 200)
+        if (http.readyState == 4 && http.status == 200)
         {
             console.log("Response received")
             var xml = (new DOMParser()).parseFromString(http.response,'text/xml')
+            console.log(xml)
             CreateTable(xml)
         }
         else
-            alert("Error: Can't load data")
+        	if(http.status == 404)
+	            alert("Error: Can't load data")
     }
 
     http.send()
 }
 
 function CreateTable(xml){
-	var products = xml.getElementsByTagName("San_pham")
-	console.log(products)
+	var products = xml.getElementsByTagName("San_Pham")
+	console.log(products.length)
 	for(var i = 0;i<products.length;i++){
-		var catg = products[i].getElementsByTagsName("Loai_SP")
+		var catg = products[i].getElementsByTagName("Loai_SP")[0]
 		var div = null 
 		
 		switch(catg.getAttribute("Ma_Loai")){
 			case "CAFE":
-				div = document.getElementById("coffee").getElementsByTagsName("table")[0]
+				div = document.getElementById("coffee").getElementsByTagName("tbody")[0]
 				break
 			case "FRAPBLENDED":
-				div = document.getElementById("frapblended").getElementsByTagsName("table")[0]
+				div = document.getElementById("frapblended").getElementsByTagName("tbody")[0]
 				break
 			case "FRAPCREAM":
-				div = document.getElementById("frapcream").getElementsByTagsName("table")[0]
+				div = document.getElementById("frapcream").getElementsByTagName("tbody")[0]
 				break
 			case "TEA":
-				div = document.getElementById("tea").getElementsByTagsName("table")[0]
+				div = document.getElementById("tea").getElementsByTagName("tbody")[0]
 				break
 			default:
 				break
 		}
 
 		if(div != null){
-			var product = `<tr id="${products[i].getAttribute("Ma_so")}">
-		<td>${products[i].getAttribute("Ma_so")}</td>
-		<td>${products[i].getAttribute("Ten")}</td>
-		<td>${products[i].getAttribute("Gia_ban")}</td>
-		<td>${products[i].getAttribute("Mo_ta")}</td>
-		<td>${products[i].getAttribute("Tam_ngung")==false ? "" : "Tạm ngưng"}</td>
-		<td><button id="editBtn" type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
-          <span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa 
-        </button></td>
-		</tr>`
-			div.innerHTML += products
+			var tr = document.createElement("tr")
+			var attr = [products[i].getAttribute("Ma_so"),
+			products[i].getAttribute("Ten"),
+			products[i].getAttribute("Gia_ban"),
+			products[i].getAttribute("Mo_ta"),
+			products[i].getAttribute("Tam_ngung")=="false" ? "Open" : "Closed"]
+			tr.setAttribute("id",attr[0])
+			console.log(i)
+			for(var j =0;j<5;j++){
+				var td = document.createElement("td")
+				td.innerHTML = attr[j]
+				tr.appendChild(td)
+			}
+
+			var td = document.createElement("td")
+			var btn = document.createElement("button")
+			btn.setAttribute("class","btn btn-info editBtn")
+			btn.setAttribute("data-toggle","modal")
+			btn.setAttribute("data-toggle","modal")
+			btn.setAttribute("data-target","#myModal")
+
+			var span = document.createElement("span")
+			span.setAttribute("class","glyphicon glyphicon-pencil")
+			btn.appendChild(span)
+			btn.innerHTML = "Edit"
+
+			td.appendChild(btn)
+			tr.appendChild(td)
+
+			div.appendChild(tr)
+
 		}
 	}
 }

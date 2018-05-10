@@ -13,7 +13,7 @@ function getSession(){
 		if(data != null){
 			data = data.split('\n')
 			session = data.filter(word => (word.length > 0 && word != '\n'))
-			console.log(session)
+			// console.log(session)
 		}
 	}
 	catch(err){
@@ -73,9 +73,9 @@ http.createServer((req,res)=>{
 	var getPage = false
 
 	var cookie = getCookie(req.headers.cookie,"session")
-	    console.log("cookie: " + cookie)
-	if(cookie != '')
-		console.log(cookie)
+	//     console.log("cookie: " + cookie)
+	// if(cookie != '')
+	// 	console.log(cookie)
 
     if(cookie != '' || (req.headers["username"] != null && req.headers["password"] != null && req.headers["manager"] != null) )
     {

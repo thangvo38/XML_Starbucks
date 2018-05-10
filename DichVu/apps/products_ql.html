@@ -152,65 +152,76 @@
                         <a data-toggle="tab" href="#frapcream">Frappuccino Creme</a>
                     </li>
                 </ul>
-                <div class="row">
+                <div class="row text-center">
                     <div id="listContainer">
                         <div class="tab-content">
                             <div id="coffee" class="tab-pane fade in active">
                                 <div id = "coffee_show" class ="row">
                                     <div class="container"> 
-                                        <table class="table table-condensed">
-                                        <thead>
-                                            <th>Mã số</th>
-                                            <th>Tên</th>
-                                            <th>Giá bán</th>
-                                            <th>Mô tả</th>
-                                            <th>Trại thái</th>
-                                            <th>Chỉnh sửa</th>
-                                        </thead>
+                                        <table class="table table-bordered">
+                                            <thead class="row">
+                                                <th class="col-sm-1 text-center">ID</th>
+                                                <th class="col-sm-3 text-center">Name</th>
+                                                <th class="col-sm-2 text-center">Price</th>
+                                                <th class="col-sm-4 text-center">Description</th>
+                                                <th class="col-sm-1 text-center">State</th>
+                                                <th class="col-sm-1 text-center">Edit</th>
+                                            </thead>
+                                            <tbody>
+                                                
+                                            </tbody>
                                         </table>
                                     </div>  
                                 </div>
                             </div>
                             <div id="tea" class="tab-pane fade">
                                 <div class="container"> 
-                                    <table class="table table-condensed">
-                                        <thead>
-                                            <th>Mã số</th>
-                                            <th>Tên</th>
-                                            <th>Giá bán</th>
-                                            <th>Mô tả</th>
-                                            <th>Trại thái</th>
-                                            <th>Chỉnh sửa</th>
-                                        </thead>
+                                    <table class="table table-bordered">
+                                        <thead class="row">
+                                                <th class="col-sm-1 text-center">ID</th>
+                                                <th class="col-sm-3 text-center">Name</th>
+                                                <th class="col-sm-2 text-center">Price</th>
+                                                <th class="col-sm-4 text-center">Description</th>
+                                                <th class="col-sm-1 text-center">State</th>
+                                                <th class="col-sm-1 text-center">Edit</th>
+                                            </thead>
+                                        <tbody>
+                                                
+                                            </tbody>
                                     </table>
                                 </div>
                             </div>
                             <div id="frapblended" class="tab-pane fade">
                                 <div class="container"> 
-                                    <table class="table table-condensed">
-                                        <thead>
-                                            <th>Mã số</th>
-                                            <th>Tên</th>
-                                            <th>Giá bán</th>
-                                            <th>Mô tả</th>
-                                            <th>Trại thái</th>
-                                            <th>Chỉnh sửa</th>
-                                        </thead>
-                                        
+                                    <table class="table table-bordered">
+                                        <thead class="row">
+                                                <th class="col-sm-1 text-center">ID</th>
+                                                <th class="col-sm-3 text-center">Name</th>
+                                                <th class="col-sm-2 text-center">Price</th>
+                                                <th class="col-sm-4 text-center">Description</th>
+                                                <th class="col-sm-1 text-center">State</th>
+                                                <th class="col-sm-1 text-center">Edit</th>
+                                            </thead>
+                                        <tbody>
+                                                
+                                            </tbody>
                                     </table>
                                 </div>
                             </div>
                             <div id="frapcream" class="tab-pane fade">
                                 <div class="container"> 
-                                    <table class="table table-condensed">
-                                        <thead>
-                                            <th>Mã số</th>
-                                            <th>Tên</th>
-                                            <th>Giá bán</th>
-                                            <th>Mô tả</th>
-                                            <th>Tạm ngưng</th>
-                                            <th>Chỉnh sửa</th>
-                                        </thead>             
+                                    <table class="table table-bordered">
+                                        <thead class="row">
+                                                <th class="col-sm-1 text-center">ID</th>
+                                                <th class="col-sm-3 text-center">Name</th>
+                                                <th class="col-sm-2 text-center">Price</th>
+                                                <th class="col-sm-4 text-center">Description</th>
+                                                <th class="col-sm-1 text-center">State</th>
+                                                <th class="col-sm-1 text-center">Edit</th>
+                                            </thead>
+                                        <tbody>
+                                                
+                                            </tbody>         
                                     </table>
                                 </div>
                             </div>
@@ -228,20 +239,20 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Chỉnh sửa thông tin</h4>
+          <h4 class="modal-title">Edit product</h4>
         </div>
         <div class="modal-body">
             <form method="post" action="localhost:3001/change">
                 <div class="form-group">
-                    <label >Giá bán</label>
+                    <label >Price</label>
                     <!-- name = giaBan_MaSP -->
                     <input type="number" min="0" class="form-control"  id="" name="giaBan"> 
                 </div>
                 <div class="form-group">
-                    <label for="pwd">Trại thái</label>
+                    <label for="pwd">Status</label>
                     <div class="checkbox">
                         <!-- name = tamNgung_MaSP -->
-                        <label><input type="checkbox" name="tamNgung">  Tạm ngưng</label>
+                        <label><input type="checkbox" name="tamNgung">  Close</label>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-default">OK</button>
