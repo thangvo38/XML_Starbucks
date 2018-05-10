@@ -1,6 +1,13 @@
 $(document).ready(function(){
 	//Gửi request lên server
 	SendDataRequest()
+
+	//Lấy thông tin khi bấm nút chỉnh sửa
+	$("#editBtn").click(function(){
+		$(this).parent().siblings().each(function(){
+			
+		})
+	})
 })
 
 function SendDataRequest(){
@@ -46,15 +53,15 @@ function CreateTable(xml){
 		}
 
 		if(div != null){
-			var product = `<tr>
+			var product = `<tr id="${products[i].getAttribute("Ma_so")}">
 		<td>${products[i].getAttribute("Ma_so")}</td>
 		<td>${products[i].getAttribute("Ten")}</td>
 		<td>${products[i].getAttribute("Gia_ban")}</td>
 		<td>${products[i].getAttribute("Mo_ta")}</td>
 		<td>${products[i].getAttribute("Tam_ngung")==false ? "" : "Tạm ngưng"}</td>
-		<td><a href="#" class="btn btn-info">
+		<td><button id="editBtn" type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
           <span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa 
-        </a></td>
+        </button></td>
 		</tr>`
 			div.innerHTML += products
 		}
