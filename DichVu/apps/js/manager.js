@@ -5,14 +5,14 @@ $(document).ready(function(){
 	//Lấy thông tin khi bấm nút chỉnh sửa
 	$("#editBtn").click(function(){
 		$(this).parent().siblings().each(function(){
-			
+
 		})
 	})
 })
 
 function SendDataRequest(){
 	var http = new XMLHttpRequest()
-    http.open("POST", "http://localhost:3002/getAllProduct", true)
+    http.open("POST", "http://localhost:3002/getAllProducts", true)
     http.setRequestHeader("Content-type", "text/plain")
         
     http.onreadystatechange = function () {
