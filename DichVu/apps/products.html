@@ -14,9 +14,6 @@
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
     <!-- Bootstrap -->
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
     <!-- Custom CSS -->
 
     <link rel="stylesheet" href="style.css">
@@ -37,23 +34,6 @@
 
 <body>
 
-    <div class="header-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="user-menu">
-                        <ul>
-                            <li>
-                                <a href="clients/login.html">
-                                    <i class="fa fa-user"></i>Log out</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End header area -->
 
     <div class="site-branding-area">
         <div class="container">
@@ -160,17 +140,20 @@
                     <div id="listContainer">
                         <div class="tab-content">
                             <div id="coffee" class="tab-pane fade in active">
-                                <div id = "coffee_show" class ="row">
-
-                                </div>
+                                <br>
+                                <div id = "coffee_show" class ="row"></div>
                             </div>
                             <div id="tea" class="tab-pane fade">
+                                <br>
+                                <div id = "tea_show" class ="row"></div>
                             </div>
                             <div id="frapblended" class="tab-pane fade">
-                                
+                                <br>
+                                <div id = "frapblended_show" class ="row"></div>
                             </div>
                             <div id="frapcream" class="tab-pane fade">
-                                
+                                <br>
+                                <div id = "frapcream_show" class ="row"></div>
                             </div>
                         </div>
                     </div>
@@ -229,6 +212,7 @@
     
     <!-- Main Script -->
     <script src="js/main.js"></script>
-    <script>readXML()</script>
+    <script src="js/guest.js"></script>
+    <script>GetData()</script>
   </body>
 </html>
