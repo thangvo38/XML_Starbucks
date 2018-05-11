@@ -79,9 +79,8 @@ http.createServer((req,res)=>{
 
     if(cookie != '' || (req.headers["username"] != null && req.headers["password"] != null && req.headers["manager"] != null) )
     {
-    	var hashCode = ''
-    	if(cookie != '')
-    		hashCode = cookie
+    	var hashCode = (cookie != '') ? cookie : ''
+
     	switch(req.method){
     		case "POST":
     			//Trường hợp logout
@@ -101,6 +100,20 @@ http.createServer((req,res)=>{
 	    			}
 				}
 
+				//Trường hợp là khách
+				if(hashCode=="$"){
+					//Đọc file session.ss
+	    			if(checkAuth(hashCode) === false)
+	    			{
+	    				session.push(hashCode)
+	    				writeSession()
+	    			}
+	    			res.writeHeader(200, {'Content-Type': 'text/plain'})
+	                res.end(hashCode)
+	                return
+				}
+
+				//Trường hợp là nhân viên/quản lí
     		    //Xử lí username và password có tồn tại hay không
 	    		var options ={
 	    			host: 'localhost',
@@ -163,6 +176,9 @@ http.createServer((req,res)=>{
 
     				switch(req.url){
 						case '/': //XỬ LÍ ROUTE RA NHỮNG TRANG HTML CHO NHÂN VIÊN/QUẢN LÍ
+							if(hashCode == "$") //Là khách
+								req_url = "/products.html"
+							else
 							if(hashCode[0] == '1') //Là quản lí
 								req_url = "/products_ql.html"
 							else //Là nhân viên
@@ -184,7 +200,7 @@ http.createServer((req,res)=>{
     			break;
     	}
     }
-    else //Hệ khách
+    else //Chưa đăng nhập
     {
     	switch(req.url){
 			case '/':

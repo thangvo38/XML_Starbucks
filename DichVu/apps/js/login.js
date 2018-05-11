@@ -1,15 +1,19 @@
 jQuery(document).ready(function($){
 
 	$("a#guestSubmit").bind('click',function(){
+        document.cookie = "session:$" //đánh dấu tài khoản khách
 		$.ajax({
-			url: '/products',
-            type:"GET",
+            type:"POST",
+            headers:{
+                "guest": true
+            },
             error: function(error){
             	alert("Unexpected Error")
             },
             success: function(data){
-                $("html").empty();
-                $("html").append(data);
+                location.reload()
+                // $("html").empty();
+                // $("html").append(data);
             }
         })
 	})

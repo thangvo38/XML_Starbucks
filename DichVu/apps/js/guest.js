@@ -6,7 +6,6 @@ function GetData()
     var http = new XMLHttpRequest()
     http.open("GET","http://localhost:3002/getData", true)
 
-    http.setRequestHeader("Content-type", "text/plain")
 
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200)
@@ -40,7 +39,7 @@ function GetData()
             loadAll(data);
         }
         else
-        if (http.status == 500)
+        if (http.status == 404)
         {
             console.log("Can't read file from server")
         }
