@@ -21,8 +21,22 @@ http.createServer((req,res)=>{
 	                    res.end("Can't read file")
 	                    return
 					}
-					break
-
+				break
+				case "/getProduct":
+					console.log(req.headers.id)
+					var product = fs.readFileSync(`../DuLieu/SanPham/${req.headers.id}.xml`,"utf-8")
+					if(product != null){
+						console.log(product)
+						res.writeHeader(200, {'Content-Type': 'text/xml'})
+	                    res.end(product)
+	                    return
+					}
+					else{
+						res.writeHeader(404, {'Content-Type': 'text/plain'})
+	                    res.end("Can't read file")
+	                    return
+					}
+				break
 
 			}
 		break

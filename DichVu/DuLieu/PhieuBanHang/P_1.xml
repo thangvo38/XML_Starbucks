@@ -1,0 +1,6 @@
+<Phieu_Ban_Hang MaPhieu="P_1" Ngay="04-01-2018" HoTen="Vũ Minh Quân" DienThoai="0909090909" DiaChi="69 Phú Mỹ Hưng" HoTenNhanVien="Võ Hữu Thắng" TongTien="140000">
+	<Danh_Sach_San_Pham>
+		<San_Pham Ma_so="CAFE_01" Ten="Hazelnut Macchiato" So_luong="1" Gia_ban="50000"/>
+		<San_Pham Ma_so="FRAPBLENDED_01" Ten="Asian Dolce Frappuccino® Blended Coffee" So_luong="1" Gia_ban="90000"/>
+	</Danh_Sach_San_Pham>
+</Phieu_Ban_Hang>

@@ -3,10 +3,28 @@ $(document).ready(function(){
 	SendDataRequest()
 
 	//Lấy thông tin khi bấm nút chỉnh sửa
-	$(".editBtn").click(function(){
-		$(this).parent().siblings().each(function(){
+	$("#submitBtn").click(function(){
+		console.log("Clicked")
+		var http = new XMLHttpRequest()
+		var params = [$("#formID").html(),$("#formPrice").val(),$("#formStatus").is(':checked') ? true:false]
+		console.log(params[2])
+		var query = `id=${params[0]}&price=${params[1]}&status=${params[2]}`
+		http.open("POST","http://localhost:3001/change?" + query,true)
 
-		})
+		http.onreadystatechange = function () {
+	        if (http.readyState == 4 && http.status == 200)
+	        {
+	            alert("Product Updated!")
+	            location.reload()
+	        }
+	        else
+	        	if(http.status == 404)
+		            alert("Error: Can't load data")
+    	}
+
+		http.send()
+
+		
 	})
 })
 
@@ -19,7 +37,7 @@ function SendDataRequest(){
         {
             console.log("Response received")
             var xml = (new DOMParser()).parseFromString(http.response,'text/xml')
-            console.log(xml)
+            // console.log(xml)
             CreateTable(xml)
         }
         else
@@ -32,7 +50,7 @@ function SendDataRequest(){
 
 function CreateTable(xml){
 	var products = xml.getElementsByTagName("San_Pham")
-	console.log(products.length)
+	// console.log(products.length)
 	for(var i = 0;i<products.length;i++){
 		var catg = products[i].getElementsByTagName("Loai_SP")[0]
 		var div = null 
@@ -62,7 +80,7 @@ function CreateTable(xml){
 			products[i].getAttribute("Mo_ta"),
 			products[i].getAttribute("Tam_ngung")=="false" ? "Open" : "Closed"]
 			tr.setAttribute("id",attr[0])
-			console.log(i)
+			// console.log(i)
 			for(var j =0;j<5;j++){
 				var td = document.createElement("td")
 				td.innerHTML = attr[j]
@@ -71,7 +89,9 @@ function CreateTable(xml){
 
 			var td = document.createElement("td")
 			var btn = document.createElement("button")
-			btn.setAttribute("class","btn btn-info editBtn")
+			btn.setAttribute("class","btn btn-info")
+			btn.setAttribute("id",attr[0])
+			btn.setAttribute("onclick","clickEdit(this.id)")
 			btn.setAttribute("data-toggle","modal")
 			btn.setAttribute("data-toggle","modal")
 			btn.setAttribute("data-target","#myModal")
@@ -85,7 +105,17 @@ function CreateTable(xml){
 			tr.appendChild(td)
 
 			div.appendChild(tr)
-
 		}
 	}
+}
+
+function clickEdit(id){
+	var nodes = document.getElementById(id).getElementsByTagName("td")
+	console.log(nodes[1].innerHTML)
+	console.log(nodes[2].innerHTML)
+	console.log(nodes[4].innerHTML)
+	$("#formName").html(nodes[1].innerHTML)
+	$("#formID").html(nodes[0].innerHTML)
+	$("#formPrice").val(nodes[2].innerHTML)
+	$("#formStatus").attr("checked",(nodes[4].innerHTML == "Open")? false:true)
 }

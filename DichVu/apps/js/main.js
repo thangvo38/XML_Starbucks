@@ -121,33 +121,6 @@ jQuery(document).ready(function($){
         }
     })
 
-    $("#signInForm").submit(function(){
-        var check = true
-        if($("#signPassword").val() != $("#signPassword2").val())
-        {
-            $("#passwordError").html("Mật khẩu nhập lại không đúng")
-            check = false
-        }
-        else
-            $("#passwordError").html("")
-            
-        var response = grecaptcha.getResponse();
-        if(response.length == 0)
-        {
-            $("#captchaError").html("Xin hãy xác nhận captcha")
-            check = false
-        }
-        else
-            $("#captchaError").html("")
-            
-        if(check)
-        {
-            alert("Đăng kí thành công!")
-            window.location.href = "../loged in/home_login.html";
-        }
-
-        return false        
-    })
 
     $(".dropdown").mouseleave(function(){
         $(this).find(".dropdown-toggle").dropdown("toggle")
