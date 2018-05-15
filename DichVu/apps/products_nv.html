@@ -141,6 +141,96 @@
     <div class="single-product-area">
             <div class="zigzag-bottom"></div>
             <div class="container">
+                <div>
+                    <form class="form-inline row">
+                        <div class="form-group col-md-3 ">
+                            <label for="product_type">Name</label>
+                            <select type="text" class="form-control" id="product_type">
+                                <option value = "Coffee">Coffee</option>
+                                <option value = "Tea">Tea</option>
+                                <option value = "FrapBlended">Frappuccino Blended</option>
+                                <option value = "FrapCream">Frappuccino Creme</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="product_choose">Products</label>
+                            <select style="width: 80%" type="text" class="form-control" id="product_choose">
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="product_quantity">Quantity</label>
+                            <input style = "width: 100px"type="number" class="form-control" id="product_quantity">
+                        </div>
+
+                        <button style = "background: #1c7226; color: white"type="button" class="btn btn-default col-md-1" id = "product_click">Add</button>
+                    </form>
+                </div>
+
+                <br>
+
+                <div>
+                    <div class="panel panel-success"> 
+                        <div style= "background: #1c7226; color: white" class="panel-heading"> 
+                            <h3 class="panel-title">Customer Orders</h3> 
+                        </div> 
+                        <div class="panel-body"> 
+                            <table class="table table-bordered">
+                                <thead>
+                                    <th>No.</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                </thead>
+                                <tbody id = "customer_order">
+
+                                </tbody>
+                            </table>
+                            <div style="display: inline;">
+                                <div>
+                                    <button class = "btn btn-default"style = "background: #1c7226; width:100px;color: white;margin-left: calc(45vw - 50px)" type="button" data-toggle="modal" data-target="#Buy">Buy</button>
+                                    <div class="modal fade" id="Buy" role="dialog">
+                                        <div class="modal-dialog modal-content">
+                                            <div>
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Customer Info:</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form id="BuyForm" method = "post">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Name:</label>
+                                                            <input id="cusName" name = "Name" pattern="\S+" type="text" class="form-control" autocomplete="off" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">Phone:</label>
+                                                            <input id="cusPhone" name = "Phone" pattern="\S+" type="text" class="form-control" autocomplete="off" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">Address:</label>
+                                                            <input id="cusAddress" name = "Address" pattern="\S+" type="text" class="form-control" autocomplete="off" required>
+                                                        </div>
+                                                        <button style = "background: #1c7226; color: white" id="Buy_button" type="button" class="btn btn-success center-block">
+                                                            <b>Submit</b>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button  type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p style="text-align: right;font-size: large " >Total: <b id = "customer_order_total">0</b> VND.</p>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+
+
                 <ul class="nav nav-tabs">
                     <li class="active">
                         <a data-toggle="tab" href="#coffee">Coffee</a>
@@ -159,17 +249,20 @@
                     <div id="listContainer">
                         <div class="tab-content">
                             <div id="coffee" class="tab-pane fade in active">
-                                <div id = "coffee_show" class ="row">
-
-                                </div>
+                                <br>
+                                <div id = "coffee_show" class ="row"></div>
                             </div>
                             <div id="tea" class="tab-pane fade">
+                                <br>
+                                <div id = "tea_show" class ="row"></div>
                             </div>
                             <div id="frapblended" class="tab-pane fade">
-                                
+                                <br>
+                                <div id = "frapblended_show" class ="row"></div>
                             </div>
                             <div id="frapcream" class="tab-pane fade">
-                                
+                                <br>
+                                <div id = "frapcream_show" class ="row"></div>
                             </div>
                         </div>
                     </div>
@@ -229,6 +322,6 @@
     <!-- Main Script -->
     <script src="js/main.js"></script>
     <script src="js/employee.js"></script>
-    <script>readXML()</script>
+    <script>GetData()</script>
   </body>
 </html>

@@ -64,6 +64,25 @@ http.createServer((req,res)=>{
 	                    return
 					}
 				break
+				case "/getPhieuBanHang":
+					var dir = "../DuLieu/PhieuBanHang/";
+					var data= "<DanhSach>";
+					data += fs.readFileSync(dir + "PhieuBanHang.xml","utf-8");
+					data += "</DanhSach>"
+					if(data != "<DanhSach></DanhSach"){
+						console.log("write SUCC")
+						res.setHeader("Access-Control-Allow-Origin", '*')
+						res.writeHeader(200, {'Content-Type': 'text/plain'})
+						res.write(data)
+	                    res.end()
+	                    return
+					}
+					else{
+						res.writeHeader(404)
+	                    res.end("Can't read file")
+	                    return
+					}
+				break
 			}
 		break
 	}
