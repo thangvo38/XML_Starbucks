@@ -2,12 +2,13 @@ var http = require('http')
 var fs = require('fs')
 var sha256 = require('js-sha256');
 var xml2js = require('xml2js')
+var url = require('url')
 
 var port = 3000
 
 //Get Cookie
 function getCookie(cookie,cname) {
-    var name = cname + ":";
+    var name = cname + "=";
     var decodedCookie = decodeURIComponent(cookie);
     var ca = decodedCookie.split(';');
     for(var i = 0; i <ca.length; i++) {
@@ -144,8 +145,7 @@ http.createServer((req,res)=>{
 
 			break;
 		case "GET":
-			console.log(cookie)
-			switch(req.url){
+			switch(req.url.split('?')[0]){
 				case '/':
 					if(cookie == '')
 						req_url = "/index.html"
@@ -219,6 +219,16 @@ http.createServer((req,res)=>{
 			            })
 
 					}
+					break
+				case '/viewProduct':
+					var query = url.parse(req.url,true).query
+					if(query["id"] == null || cookie != '$'){
+						res.writeHead(404, 'Not found')
+						res.end("ERROR")
+						return
+					}
+
+					req_url = "single-product.html"
 					break
 				default: //Những file resource
 					req_url = req.url

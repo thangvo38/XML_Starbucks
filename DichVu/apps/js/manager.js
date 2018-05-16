@@ -8,8 +8,11 @@ $(document).ready(function(){
 		var http = new XMLHttpRequest()
 		var params = [$("#formID").html(),$("#formPrice").val(),$("#formStatus").is(':checked') ? true:false]
 		console.log(params[2])
-		var query = `id=${params[0]}&price=${params[1]}&status=${params[2]}`
-		http.open("POST","http://localhost:3001/change?" + query,true)
+		// var query = `id=${params[0]}&price=${params[1]}&status=${params[2]}`
+		http.open("POST","http://localhost:3001/change")
+		http.setRequestHeader("id", params[0])
+		http.setRequestHeader("price", params[1])
+		http.setRequestHeader("status", params[2])
 
 		http.onreadystatechange = function () {
 	        if (http.readyState == 4 && http.status == 200)
@@ -30,8 +33,10 @@ $(document).ready(function(){
 
 function SendDataRequest(){
 	var http = new XMLHttpRequest()
-    http.open("GET", "http://localhost:3002/getdata", true)
-        
+    http.open("GET", "http://localhost:3001/getdata", true)
+    console.log(document.cookie)
+	http.setRequestHeader("token", document.cookie)
+    
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200)
         {

@@ -66,12 +66,11 @@ http.createServer((req,res)=>{
 						data += fs.readFileSync(file_dir,"utf-8");
 					});
 					data += "</DanhSach>"
-					if(data != "<DanhSach></DanhSach"){
+					if(data != "<DanhSach></DanhSach>"){
 						console.log("write SUCC")
 						res.setHeader("Access-Control-Allow-Origin", '*')
 						res.writeHeader(200, {'Content-Type': 'text/plain'})
-						res.write(data)
-	                    res.end()
+	                    res.end(data)
 	                    return
 					}
 					else{

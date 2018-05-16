@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
 
 	$("a#guestSubmit").bind('click',function(){
-        document.cookie = "session:$" //đánh dấu tài khoản khách
+        document.cookie = "session=$" //đánh dấu tài khoản khách
 		$.ajax({
             type:"POST",
             headers:{
@@ -30,7 +30,7 @@ jQuery(document).ready(function($){
             	alert("Wrong Username or Password")
             },
             success: function(data){
-                document.cookie = "session:" + data
+                document.cookie = "session=" + data
                 location.reload()
             }
         })
@@ -48,7 +48,7 @@ jQuery(document).ready(function($){
             	alert("Wrong Username or Password")
             },
             success: function(data){
-                document.cookie = "session:" + data
+                document.cookie = "session=" + data
                 location.reload()
             }
         })
