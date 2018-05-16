@@ -129,3 +129,13 @@ function loadAll(Data)
     creamShow.innerHTML = "";
     creamShow.appendChild(showData(Data,3))
 }
+
+$('#product-type').change(function(){
+    var selectedText = $(this).find("option:selected").text();
+    switch (selectedText)
+    {
+        case "coffee":
+        
+    }
+   
+});
