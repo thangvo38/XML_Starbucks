@@ -129,6 +129,7 @@ jQuery(document).ready(function($){
 //Log out
     $("#logOut").click(function(){
         console.log("Clicked")
+        document.cookie = ''
         $.ajax({
             type:"POST",
             headers: {
@@ -138,7 +139,6 @@ jQuery(document).ready(function($){
                 alert("ERROR: " + error)
             },
             success: function(data){
-                document.cookie = ''
                 location.reload()
             }
         })

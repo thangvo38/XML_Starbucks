@@ -30,7 +30,7 @@ $(document).ready(function(){
 
 function SendDataRequest(){
 	var http = new XMLHttpRequest()
-    http.open("GET", "http://localhost:3002/getData", true)
+    http.open("GET", "http://localhost:3002/getdata", true)
         
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200)
