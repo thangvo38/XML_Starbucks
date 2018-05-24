@@ -99,7 +99,29 @@ http.createServer((req,res)=>{
 					}
 				break
 			}
+
+			if (this.split("?")[0] == "/viewProduct")
+			{
+				var dir = "../DuLieu/SanPham/";
+				var data= "<DanhSach>";
+				data += fs.readFileSync(dir + "SP_" + req.url.split("?")[1]+".xml","utf-8");
+				data += "</DanhSach>"
+				if(data != "<DanhSach></DanhSach"){
+					console.log("write SUCC")
+					res.setHeader("Access-Control-Allow-Origin", '*')
+					res.writeHeader(200, {'Content-Type': 'text/plain'})
+					res.write(data)
+					res.end()
+					return
+				}
+				else{
+					res.writeHeader(404)
+					res.end("Can't read file")
+					return
+				}
+			}
 		break
+
 	}
 
 }).listen(port, (err) => {
