@@ -26,7 +26,7 @@ function getCookie(cookie,cname) {
 //End
 
 http.createServer((req,res)=>{
-    // console.log(`${req.method} ${req.url}`);
+    console.log(`${req.method} ${req.url}`);
 
 	var req_url
 	var getPage = false
@@ -203,6 +203,7 @@ http.createServer((req,res)=>{
 							            res.end()
 							        } else {
 							            res.setHeader('Content-type' , 'text/html');
+							            // res.setHeader('Access-Control-Allow-Origin' , '*');
 							            res.end(data);
 							        }
 							        return

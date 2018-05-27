@@ -8,24 +8,41 @@ $(document).ready(function(){
 		var http = new XMLHttpRequest()
 		var params = [$("#formID").html(),$("#formPrice").val(),$("#formStatus").is(':checked') ? true:false]
 		console.log(params[2])
-		// var query = `id=${params[0]}&price=${params[1]}&status=${params[2]}`
-		http.open("POST","http://localhost:3001/change")
-		http.setRequestHeader("id", params[0])
-		http.setRequestHeader("price", params[1])
-		http.setRequestHeader("status", params[2])
 
-		http.onreadystatechange = function () {
-	        if (http.readyState == 4 && http.status == 200)
-	        {
-	            alert("Product Updated!")
-	            location.reload()
-	        }
-	        else
-	        	if(http.status == 404)
-		            alert("Error: Can't load data")
-    	}
+		$.ajax({
+            type:"POST",
+            url: "changeData",
+            headers:{
+                "id":params[0],
+                "price":params[1],
+                "status":params[2]
+            },
+            error: function(error){
+            	alert("Unexpected Error")
+            },
+            success: function(data){
+                alert("Changed!")
+                location.reload()
+            }
+        })
 
-		http.send()
+		// http.open("POST","http://localhost:3001/change")
+		// http.setRequestHeader("id", params[0])
+		// http.setRequestHeader("price", params[1])
+		// http.setRequestHeader("status", params[2])
+
+		// http.onreadystatechange = function () {
+	 //        if (http.readyState == 4 && http.status == 200)
+	 //        {
+	 //            alert("Product Updated!")
+	 //            location.reload()
+	 //        }
+	 //        else
+	 //        	if(http.status == 404)
+		//             alert("Error: Can't load data")
+  //   	}
+
+		// http.send()
 
 		
 	})
@@ -34,15 +51,13 @@ $(document).ready(function(){
 function SendDataRequest(){
 	var http = new XMLHttpRequest()
     http.open("GET", "http://localhost:3001/getdata", true)
-    console.log(document.cookie)
-	http.setRequestHeader("token", document.cookie)
     
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200)
         {
             console.log("Response received")
+            console.log(http.response)
             var xml = (new DOMParser()).parseFromString(http.response,'text/xml')
-            // console.log(xml)
             CreateTable(xml)
         }
         else
@@ -50,7 +65,7 @@ function SendDataRequest(){
 	            alert("Error: Can't load data")
     }
 
-    http.send()
+    http.send(document.cookie)
 }
 
 function CreateTable(xml){

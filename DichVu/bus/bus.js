@@ -26,7 +26,7 @@ function getCookie(cookie,cname) {
 
 //Cache
 //Cache danh sách sản phẩm (JSON)
-var cacheProducts = {}
+var cacheProducts = null
 //Cache danh sách các token (String Array)
 var sessions = []
 
@@ -63,7 +63,6 @@ http.createServer((req,res)=>{
 	console.log(`${req.method} ${req.url}`);
 	//Lưu thông tin gửi đến DAL
 	var options = {}
-	console.log("TOKEN: " + req.headers["token"])
 	var cookie = getCookie(req.headers["token"],"session")
 
 	switch(req.method){
@@ -180,56 +179,29 @@ http.createServer((req,res)=>{
 			break
 		case "GET":
 			switch(req.url.split('?')[0]){
-				//Lấy chi tiết 1 sản phẩm theo id
-				case "/getproduct": 
-					var query = url.parse(req.url,true).query
-					var cookie = getCookie(req.headers.cookie,"session")
-
-					//Kiểm tra query và session có hợp lệ hay không
-					if(query["id"] == null || cookie != '$'){
-						res.writeHeader(404, {'Content-Type': 'text/plain'})
-                    	res.end("Authentication Error")
-                    	return
-					}
-
-					//Kiểm tra xem cache có rỗng không
-					//TH không rỗng => Load từ cache
-					if(cacheProducts != null){
-						
-					}
-
-					//TH rỗng => ???
-
-					break
-			}
-			break
-		case "OPTIONS":
-			switch(req.url){
 				//Lấy toàn bộ danh sách sản phẩm
-				case "/getdata":
+				case "/getdata":{
 					console.log(sessions)
 					console.log("SESSION: " + cookie)
-					if(sessions.indexOf(cookie) == -1){
-						console.log("AUTH ERR")
-						res.writeHeader(404, {'Content-Type': 'text/plain'})
-                    	res.end("Authentication Error")
-                    	return
-					}
-
-					//Lấy ra từ cache nếu có
-					console.log("CACHE LAY")
+					// if(sessions.indexOf(cookie) == -1){
+					// 	console.log("AUTH ERR")
+					// 	res.writeHeader(404, {'Content-Type': 'text/plain'})
+     //                	res.end("Authentication Error")
+     //                	return
+					// }
 
 					if(cacheProducts != null){
+						console.log("Cache is not NULL")
 						var builder = new xml2js.Builder({headless:true}); 
 						var xml = builder.buildObject(cacheProducts);
-
-						res.writeHeader(200, {'Content-Type': 'text/xml'})
+						res.setHeader("Access-Control-Allow-Origin", '*')
+						res.writeHeader(200, {'Content-Type': 'text/plain'})
 		                res.end(xml)
 		                return
 					}
 
 					//Trường hợp cache rỗng => Load từ DAL
-					console.log("CACHE RONG")
+					console.log("Cache is NULL")
 					options = {
 						host: 'localhost',
 		    			port: 3002,
@@ -261,14 +233,15 @@ http.createServer((req,res)=>{
 			            		var parser = new xml2js.Parser({explicitArray : false})
 	                			parser.parseString(body,function(err,result){
 	                				cacheProducts = result
-	                				console.log("CACHE:" + JSON.stringify(cacheProducts))
-	                				res.writeHeader(200, {'Content-Type': 'text/plain'})
+	                				res.setHeader("Access-Control-Allow-Origin", '*')
+									res.writeHeader(200, {'Content-Type': 'text/plain'})
 			                    	res.end(body)
 			                    	return
 	                			})
 			            	}
 			            	else{
-			            		res.writeHeader(200, {'Content-Type': 'text/plain'})
+			            		res.setHeader("Access-Control-Allow-Origin", '*')
+								res.writeHeader(200, {'Content-Type': 'text/plain'})
 		                    	res.end(body)
 		                    	return
 		                	}
@@ -284,9 +257,35 @@ http.createServer((req,res)=>{
 					    return
 		            })
 					break
+				}
+				//Lấy chi tiết 1 sản phẩm theo id
+				case "/getproduct": 
+					var query = url.parse(req.url,true).query
+					var cookie = getCookie(req.headers.cookie,"session")
 
+					//Kiểm tra query và session có hợp lệ hay không
+					if(query["id"] == null || cookie != '$'){
+						res.writeHeader(404, {'Content-Type': 'text/plain'})
+                    	res.end("Authentication Error")
+                    	return
+					}
+
+					//Kiểm tra xem cache có rỗng không
+					//TH không rỗng => Load từ cache
+					if(cacheProducts != null){
+						
+					}
+
+					//TH rỗng => ???
+
+					break
+			}
+			break
+		case "OPTIONS":
+			switch(req.url){
 				//Thay đổi đơn giá bán và trại thái của sản phẩm
 				case "/change":
+					console.log("HEADERS: " + req.headers)
 					//Kiểm tra trong cache
 					if(cacheProducts != null){
 						var products = cacheProducts["DanhSach"]["San_Pham"]

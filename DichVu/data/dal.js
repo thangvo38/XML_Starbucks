@@ -100,7 +100,7 @@ http.createServer((req,res)=>{
 				break
 			}
 
-			if (this.split("?")[0] == "/viewProduct")
+			if (req.url.split("?")[0] == "/viewProduct")
 			{
 				var dir = "../DuLieu/SanPham/";
 				var data= "<DanhSach>";
