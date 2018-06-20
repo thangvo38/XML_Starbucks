@@ -8,7 +8,7 @@ var PhieuBanHang = [];
 function GetData()
 {
     var http = new XMLHttpRequest()
-    http.open("GET","http://localhost:3002/getData", true)
+    http.open("GET","http://localhost:3002/getdata", true)
 
 
     http.onreadystatechange = function () {
@@ -220,7 +220,7 @@ $('#product_type').change(function(){
 
 $('#product_click').click(function(){
     var quantity = document.getElementById("product_quantity").value;
-    if (parseInt(quantity) <= 0)
+    if (parseInt(quantity) <= 0 || quantity == "")
         return;
     else{
         var cus_order = document.getElementById("customer_order")

@@ -170,7 +170,78 @@
                                 <br>
                                 <div id = "frapcream_show" class ="row"></div>
                             </div>
+                            <div class="modal fade" id="productInfo" role="dialog">
+                                <div class="modal-dialog modal-content">
+                                    <div>
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Product Information:</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="product-content-right">
+
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="product-images">
+                                                            <div class="product-main-img">
+                                                                <img style = "width: 200%;" id = "product_image" alt="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                        
+                                                    <div class="col-sm-6">
+                                                        <div class="product-inner">
+                                                            <h2 class="product-name" id = "product_name"></h2>
+                                                            <div class="product-inner-price">
+                                                                <ins id = "product_price"></ins>
+                                                            </div>
+                        
+                                                            <div role="tabpanel">
+                                                                <ul class="nav nav-tabs" role="tablist">
+                                                                    <li role="presentation" class="active">
+                                                                        <a href="#baseInfo" aria-controls="home" role="tab" data-toggle="tab">Product Information</a>
+                                                                    </li>
+                                                                </ul>
+                        
+                                                                <div class="tab-content">
+                                                                    <div role="tabpanel" class="tab-pane fade in active" id="baseInfo">
+                                                                        <br>
+                                                                                    
+                                                                        <div>
+                                                                            <table class="table">
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <b>Type:</b>
+                                                                                    </td>
+                                                                                    <td id = "product_type"></td>
+                                                                                </tr>
+                        
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <b>Info:</b>
+                                                                                    </td>
+                                                                                    <td id = "product_info"></td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                        
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button  type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>

@@ -1,6 +1,5 @@
 
 var data = []; // 0-cafe ; 1-tea ; 2-frap ; 3-creme
-
 function GetData()
 {
     var http = new XMLHttpRequest()
@@ -75,11 +74,34 @@ function showData(Data,num)
         img_container.appendChild(img);
 
         var a = document.createElement("a");
-        a.setAttribute("href" , "/viewProduct?id=" + id), 
-        a.setAttribute("data-toggle" , "tooltip");
+        a.setAttribute("id","L"+id);
+        a.setAttribute("type","button");
+        a.setAttribute("data-target" , "#productInfo");
+        a.onclick = function(){
+            var p_id = this.getAttribute("id").slice(1,this.getAttribute("id").length);
+            for(var i = 0; i<Data[num].length;i++)
+            {
+                if(Data[num][i].getAttribute("Ma_so")==p_id)
+                {
+                    p_id = i;
+                    break;
+                }
+            }
+            var p_image = document.getElementById("product_image");      
+            p_image.setAttribute("src",pic_dir+Data[num][parseInt(p_id)].getAttribute("Ma_so")+".jpg")
+            var p_name = document.getElementById("product_name");
+            p_name.innerHTML=Data[num][parseInt(p_id)].getAttribute("Ten")
+            var p_price = document.getElementById("product_price");
+            p_price.innerHTML = Data[num][parseInt(p_id)].getAttribute("Gia_ban") + " VND";
+            var p_type = document.getElementById("product_type");
+            p_type.innerHTML = Data[num][parseInt(p_id)].getElementsByTagName("Loai_SP")[0].getAttribute("Ten_Loai")
+            var p_info = document.getElementById("product_info");
+            p_info.innerHTML = Data[num][parseInt(p_id)].getAttribute("Mo_ta")
+        }
+        a.setAttribute("data-toggle" , "modal");
         a.setAttribute("data-placement" , "auto top");
         a.setAttribute("data-original-title",Data[num][i].getAttribute("Mo_ta"));
-        a.setAttribute("class","text-center");
+        a.setAttribute("class","text-center productNameClick");
         a.innerHTML = Data[num][i].getAttribute("Ten");
         var a_container = document.createElement("div")
         a_container.setAttribute("class","nameInList text-center")
@@ -128,3 +150,19 @@ function loadAll(Data)
     creamShow.innerHTML = "";
     creamShow.appendChild(showData(Data,3))
 }
+
+
+$('#productNameClick').click(function(){
+    var id = this.getAttribute("id").slice(4,getAttribute("id").length);
+    var pic_dir = "img/products/";
+    var p_image = document.getElementById("product_image");      
+    p_image.setAttribute("src",pic_dir+Data[num][i].getAttribute("Ma_so")+".jpg")
+    var p_name = document.getElementById("product_name");
+    p_name.innerHTML=Data[num][i].getAttribute("Ten")
+    var p_price = document.getElementById("product_price");
+    p_price.innerHTML = Data[num][i].getAttribute("Gia_ban") + " VND";
+    var p_type = document.getElementById("product_type");
+    p_type.innerHTML = Data[num][i].getElementsByTagName("Loai_SP").getAttribute("Ten_Loai")
+    var p_info = document.getElementById("product_info");
+    p_info.innerHTML = Data[num][i].getAttribute("Mo_ta")
+})
