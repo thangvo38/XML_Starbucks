@@ -101,7 +101,7 @@ function showData(Data,num)
         a.setAttribute("data-toggle" , "modal");
         a.setAttribute("data-placement" , "auto top");
         a.setAttribute("data-original-title",Data[num][i].getAttribute("Mo_ta"));
-        a.setAttribute("class","text-center productNameClick");
+        a.setAttribute("class","text-center");
         a.innerHTML = Data[num][i].getAttribute("Ten");
         var a_container = document.createElement("div")
         a_container.setAttribute("class","nameInList text-center")
@@ -150,19 +150,3 @@ function loadAll(Data)
     creamShow.innerHTML = "";
     creamShow.appendChild(showData(Data,3))
 }
-
-
-$('#productNameClick').click(function(){
-    var id = this.getAttribute("id").slice(4,getAttribute("id").length);
-    var pic_dir = "img/products/";
-    var p_image = document.getElementById("product_image");      
-    p_image.setAttribute("src",pic_dir+Data[num][i].getAttribute("Ma_so")+".jpg")
-    var p_name = document.getElementById("product_name");
-    p_name.innerHTML=Data[num][i].getAttribute("Ten")
-    var p_price = document.getElementById("product_price");
-    p_price.innerHTML = Data[num][i].getAttribute("Gia_ban") + " VND";
-    var p_type = document.getElementById("product_type");
-    p_type.innerHTML = Data[num][i].getElementsByTagName("Loai_SP").getAttribute("Ten_Loai")
-    var p_info = document.getElementById("product_info");
-    p_info.innerHTML = Data[num][i].getAttribute("Mo_ta")
-})
