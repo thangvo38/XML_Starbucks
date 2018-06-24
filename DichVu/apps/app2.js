@@ -3,6 +3,7 @@ var fs = require('fs')
 var sha256 = require('js-sha256');
 var xml2js = require('xml2js')
 var url = require('url')
+var service = require('../appService/appService')
 
 var port = 3000
 
@@ -42,106 +43,161 @@ http.createServer((req,res)=>{
 	switch(req.method){
 		case "POST":
 
-			//[START]Trường hợp logout
-			if(cookie != '' && req.headers["action"] == 'logout'){
-				options = {
-					host: "localhost",
-					port: 3001,
-					path: "/logout",
-					method: "POST",
-					headers: {
-						"session": cookie
+			switch(req.url.split('?')[0]){
+				case '/':
+				{
+					//[START]Trường hợp logout
+					if(cookie != '' && req.headers["action"] == 'logout'){
+						options = {
+							host: "localhost",
+							port: 3001,
+							path: "/logout",
+							method: "POST",
+							headers: {
+								"session": cookie
+							}
+						}
+
+						var body = ''
+						httpReq = http.get(options,function (response){
+							response.on('data',function(chuck){
+					            body+=chuck
+					        })
+
+					        response.on('error',function(){
+					        	console.log("ERROR=>Can't post data from users file")
+								res.writeHeader(404, {'Content-Type': 'text/plain'})
+					            res.end("Request was not support!!!")
+					            return
+					        })
+
+					   		response.on('end',function(){
+					   			console.log("Logout success")
+					   			res.writeHeader(200, {'Content-Type': 'text/plain'})
+					        	res.end("Logged Out")
+					        	return
+					   		})
+						})
+
+						//Trường hợp không kết nối được đến server
+					    httpReq.on('error',function(){
+					    	console.log("Can't connect to BUS Server")
+					    	res.writeHead(404, 'Not found')
+						    res.end("404 NOT FOUND")
+						    return
+					    })			
+					//[END]Trường hợp logout
+
+					//[START]Trường hợp là khách
+					} else if(cookie=="$"){ 
+		    			res.writeHeader(200, {'Content-Type': 'text/plain'})
+		                res.end(cookie)
+		                return
+		            //[END]Trường hợp là khách
+
+		            //[START]Trường hợp là nviên/quảnlí
+					} else if(req.headers["username"] != null && 
+						req.headers["password"] != null 
+						&& req.headers["manager"] != null){
+
+						//Xử lí username và password có tồn tại hay không
+			    		options ={
+			    			host: 'localhost',
+			    			port: 3001,
+			    			path: "/login",
+			    			method: "POST",
+			    			headers: {
+			    				"username": req.headers["username"],
+			    				"password": req.headers["password"],
+			    				"manager": req.headers["manager"]
+			    			}
+			    		}
+
+			    		var body = ''
+			    		httpReq = http.get(options,function (response) {
+
+			    			//Lấy kết quả trả về (Nếu thành công: body=session do BUS cấp)
+				            response.on('data',function(chuck){
+				                body+=chuck
+				            })
+
+				            //Trường hợp tài khoản không hợp lệ
+				            //Thực hiện các POST của nhân viên/quản lí ở đây
+				            response.on('error',function(){
+				            	console.log("ERROR=>Can't get data from users file")
+			    				res.writeHeader(404, {'Content-Type': 'text/plain'})
+			                    res.end("Request was not support!!!")
+			                    return
+				            })
+
+				            //Trường hợp tài khoản hợp lệ
+				            response.on('end',function(){
+				            	res.writeHeader(200, {'Content-Type': 'text/plain'})
+			                    res.end(body)
+			                    return
+				            })
+				        })
+
+				        //Trường hợp không kết nối được đến server
+			            httpReq.on('error',function(){
+			            	console.log("Can't connect to BUS Server")
+			            	res.writeHead(404, 'Not found')
+						    res.end("404 NOT FOUND")
+						    return
+			            })
+			            //[END]Trường hợp là nviên/quảnlí
 					}
+					break
 				}
 
-				var body = ''
-				httpReq = http.get(options,function (response){
-					response.on('data',function(chuck){
-		                body+=chuck
-		            })
+				case 'changedata':
+				{
+					options = {
+						host: "localhost",
+						port: 3001,
+						path: "/changedata",
+						method: "POST",
+						headers: {
+							"id": req.headers.id,
+							"price": req.headers.price,
+							"status": req.headers.status, 
+							"session": cookie
+						}
+					}
 
-		            response.on('error',function(){
-		            	console.log("ERROR=>Can't post data from users file")
-	    				res.writeHeader(404, {'Content-Type': 'text/plain'})
-	                    res.end("Request was not support!!!")
-	                    return
-		            })
+					var body = ''
+					httpReq = http.get(options,function (response){
+						response.on('data',function(chuck){
+				            body+=chuck
+				        })
 
-	           		response.on('end',function(){
-	           			console.log("Logout success")
-	           			res.writeHeader(200, {'Content-Type': 'text/plain'})
-		            	res.end("Logged Out")
-		            	return
-	           		})
-				})
+				        response.on('error',function(){
+				        	console.log("ERROR=>Can't post data from users file")
+							res.writeHeader(404, {'Content-Type': 'text/plain'})
+				            res.end("Request was not support!!!")
+				            return
+				        })
 
-				//Trường hợp không kết nối được đến server
-	            httpReq.on('error',function(){
-	            	console.log("Can't connect to BUS Server")
-	            	res.writeHead(404, 'Not found')
-				    res.end("404 NOT FOUND")
-				    return
-	            })
+				   		response.on('end',function(){
+				   			console.log("Logout success")
+				   			res.writeHeader(200, {'Content-Type': 'text/plain'})
+				        	res.end()
+				        	return
+				   		})
+					})
+
+					//Trường hợp không kết nối được đến server
+				    httpReq.on('error',function(){
+				    	console.log("Can't connect to BUS Server")
+				    	res.writeHead(404, 'Not found')
+					    res.end("404 NOT FOUND")
+					    return
+				    })			
+
+					break
+				}
 			}
-			//[END] Trường hợp logout
-
-			//[START]Trường hợp là khách
-			if(cookie=="$"){
-    			res.writeHeader(200, {'Content-Type': 'text/plain'})
-                res.end(cookie)
-                return
-			}
-			//[END]Trường hợp là khách
-
-
-			//[START] Trường hợp là nhân viên/quản lí
-			//Kiểm tra request có gửi username và password hay không
-			if(req.headers["username"] != null && req.headers["password"] != null && req.headers["manager"] != null){
-				//Xử lí username và password có tồn tại hay không
-	    		options ={
-	    			host: 'localhost',
-	    			port: 3001,
-	    			path: "/login",
-	    			method: "POST",
-	    			headers: {
-	    				"username": req.headers["username"],
-	    				"password": req.headers["password"],
-	    				"manager": req.headers["manager"]
-	    			}
-	    		}
-
-	    		var body = ''
-	    		httpReq = http.get(options,function (response) {
-
-	    			//Lấy kết quả trả về (Nếu thành công: body=session do BUS cấp)
-		            response.on('data',function(chuck){
-		                body+=chuck
-		            })
-
-		            //Trường hợp tài khoản không hợp lệ
-		            response.on('error',function(){
-		            	console.log("ERROR=>Can't get data from users file")
-	    				res.writeHeader(404, {'Content-Type': 'text/plain'})
-	                    res.end("Request was not support!!!")
-	                    return
-		            })
-
-		            //Trường hợp tài khoản hợp lệ
-		            response.on('end',function(){
-		            	res.writeHeader(200, {'Content-Type': 'text/plain'})
-	                    res.end(body)
-	                    return
-		            })
-		        })
-
-		        //Trường hợp không kết nối được đến server
-	            httpReq.on('error',function(){
-	            	console.log("Can't connect to BUS Server")
-	            	res.writeHead(404, 'Not found')
-				    res.end("404 NOT FOUND")
-				    return
-	            })
-			}
+			
 
 			break;
 		case "GET":

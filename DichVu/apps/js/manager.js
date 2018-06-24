@@ -4,28 +4,12 @@ $(document).ready(function(){
 
 	//Lấy thông tin khi bấm nút chỉnh sửa
 	$("#submitBtn").click(function(){
-		console.log("Clicked")
-		var http = new XMLHttpRequest()
-		var params = [$("#formID").html(),$("#formPrice").val(),$("#formStatus").is(':checked') ? true:false]
-		console.log(params[2])
+		// console.log("Clicked")
+		// var http = new XMLHttpRequest()
+		// var params = [$("#formID").html(),$("#formPrice").val(),$("#formStatus").is(':checked') ? true:false]
 
-		$.ajax({
-            type:"POST",
-            url: "changeData",
-            headers:{
-                "id":params[0],
-                "price":params[1],
-                "status":params[2]
-            },
-            error: function(error){
-            	alert("Unexpected Error")
-            },
-            success: function(data){
-                alert("Changed!")
-                location.reload()
-            }
-        })
-
+		// //param = {mã số sp, giá bán, trạng thái còn hàng}
+		
 		// http.open("POST","http://localhost:3001/change")
 		// http.setRequestHeader("id", params[0])
 		// http.setRequestHeader("price", params[1])
@@ -43,6 +27,26 @@ $(document).ready(function(){
   //   	}
 
 		// http.send()
+
+
+		$.ajax({
+            type:"POST",
+            url: "/changedata",
+            headers:{
+                "id":params[0],
+                "price":params[1],
+                "status":params[2]
+            },
+            error: function(error){
+            	alert("Unexpected Error")
+            },
+            success: function(data){
+                alert("Changed!")
+                location.reload()
+            }
+        })
+
+
 
 		
 	})

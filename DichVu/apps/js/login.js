@@ -3,6 +3,7 @@ jQuery(document).ready(function($){
 	$("a#guestSubmit").bind('click',function(){
         document.cookie = "session=$" //đánh dấu tài khoản khách
 		$.ajax({
+            url: '/',
             type:"POST",
             headers:{
                 "guest": true
@@ -20,6 +21,7 @@ jQuery(document).ready(function($){
 
 	$("#staffSubmit").click(function(){
         $.ajax({
+            url: '/',
             type:"POST",
             headers: {
                 "username" : $("#staffLoginID").val(),
@@ -38,6 +40,7 @@ jQuery(document).ready(function($){
 
     $("#adminSubmit").click(function(){
         $.ajax({
+            url: '/',
             type:"POST",
             headers: {
                 "username" : $("#adminLoginID").val(),

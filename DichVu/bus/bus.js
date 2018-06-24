@@ -69,7 +69,7 @@ http.createServer((req,res)=>{
 		case "POST":
 			switch(req.url){
 				//Kiểm tra tài khoản đăng nhập
-				case "/login":
+				case "/login":{
 					options = {
 						host: 'localhost',
 		    			port: 3002,
@@ -128,9 +128,10 @@ http.createServer((req,res)=>{
 					    return
 		            })
 					break
+				}
 
 				//Kiểm tra role để load website
-				case "/getrole":
+				case "/getrole":{
 					var token = req.headers["session"]
 					console.log(token)
 					//Trường hợp là khách
@@ -153,9 +154,10 @@ http.createServer((req,res)=>{
 					res.writeHeader(404, {'Content-Type': 'text/plain'})
 		            res.end("Request was not support!!!")
 					break
+				}
 
 				//Kiểm tra điều kiện để thực hiện đăng xuất
-				case "/logout":
+				case "/logout":{
 					var index = sessions.indexOf(req.headers["session"])
 					console.log(index)
 					//Kiểm tra lỗi
@@ -175,6 +177,71 @@ http.createServer((req,res)=>{
 		            res.end("Session removed")
 		            return
 					break
+				}
+
+				//Thay đổi thông tin sản phẩm
+				case "/changedata":{
+					//Kiểm tra session
+					var token = req.headers["session"]
+					var index = sessions.indexOf(token)
+					if(index == -1){
+						res.writeHeader(404, {'Content-Type': 'text/plain'})
+		            	res.end("Request was not support!!!")
+		            	return
+					}
+
+					//Kiểm tra trong cache
+					if(cacheProducts != null){
+						var products = cacheProducts["DanhSach"]["San_Pham"]
+						for(var i =0;i<products.length;i++){
+							if(products[i]['$']["Ma_so"] == req.headers["id"]) {
+								products[i]['$']["Gia_ban"] = req.headers["price"]
+								products[i]['$']["Tam_ngung"] = req.headers["status"]
+							}
+						}
+					}
+
+					options = {
+						host: 'localhost',
+		    			port: 3002,
+		    			path: "/changedata",
+		    			method: "POST",
+		    			headers: {
+		    				"id": req.headers.id,
+							"price": req.headers.price,
+							"status": req.headers.status
+		    			}
+					}
+
+		    		var httpReq = http.get(options,function (response) {
+
+			            response.on('error',function(){
+			            	console.log("ERROR=>Can't get data from users file")
+		    				res.writeHeader(404, {'Content-Type': 'text/plain'})
+		                    res.end("Request was not support!!!")
+		                    return
+			            })
+
+			            response.on('end',function(){
+							res.writeHeader(200, {'Content-Type': 'text/plain'})
+			            	res.end()
+		                    return
+			            })
+			        })
+
+			        //Trường hợp không kết nối được đến server
+		            httpReq.on('error',function(){
+		            	console.log("Can't connect to DAL Server")
+		            	res.writeHead(404, 'Not found')
+					    res.end("404 NOT FOUND")
+					    return
+		            })
+
+					res.writeHeader(404, {'Content-Type': 'text/plain'})
+		            res.end()
+		            return
+					break
+				}
 			}
 			break
 		case "GET":
@@ -186,8 +253,8 @@ http.createServer((req,res)=>{
 					// if(sessions.indexOf(cookie) == -1){
 					// 	console.log("AUTH ERR")
 					// 	res.writeHeader(404, {'Content-Type': 'text/plain'})
-     //                	res.end("Authentication Error")
-     //                	return
+	    			// 	res.end("Authentication Error")
+	     			//  return
 					// }
 
 					if(cacheProducts != null){
@@ -284,26 +351,7 @@ http.createServer((req,res)=>{
 		case "OPTIONS":
 			switch(req.url){
 				//Thay đổi đơn giá bán và trại thái của sản phẩm
-				case "/change":
-					console.log("HEADERS: " + req.headers)
-					//Kiểm tra trong cache
-					if(cacheProducts != null){
-						var products = cacheProducts["DanhSach"]["San_Pham"]
-						for(var i =0;i<products.length;i++){
-							if(products[i]['$']["id"] == req.headers["id"]){
-								products[i]['$']["Gia_ban"] = req.headers["price"]
-								products[i]['$']["Tam_ngung"] = req.headers["status"]
-								res.writeHeader(200, {'Content-Type': 'text/plain'})
-			            		res.end()
-			            		return
-							}
-						}
-					}
-
-					res.writeHeader(404, {'Content-Type': 'text/plain'})
-		            res.end()
-		            return
-					break
+				
 			}
 			break
 	}

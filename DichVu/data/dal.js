@@ -2,6 +2,7 @@ var http = require('http')
 var fs = require('fs')
 var xml2js = require('xml2js')
 var sha256 = require('js-sha256');
+var service = require('/dataService/dataService.js')
 var port = 3002
 
 http.createServer((req,res)=>{
@@ -9,7 +10,7 @@ http.createServer((req,res)=>{
 	switch(req.method){
 		case "POST":
 			switch(req.url){
-				case "/login":
+				case "/login":{
 					var hashCode = ''
 					var users = fs.readFileSync("../DuLieu/TaiKhoan/taikhoan.xml","utf-8")
 					var parser = new xml2js.Parser()
@@ -37,8 +38,9 @@ http.createServer((req,res)=>{
 		                res.end(hashCode)
 		                return
 	    			})
+	    		}
 				break
-				case "/getProduct":
+				case "/getProduct":{
 					console.log(req.headers.id)
 					var product = fs.readFileSync(`../DuLieu/SanPham/${req.headers.id}.xml`,"utf-8")
 					if(product != null){
@@ -52,6 +54,22 @@ http.createServer((req,res)=>{
 	                    res.end("Can't read file")
 	                    return
 					}
+				}
+				break
+				case "/changedata":{
+					var productXml = fs.readFileSync(`../DuLieu/SanPham/${req.headers.id}.xml`,"utf-8")
+					if(productXml != null){
+						product
+						res.writeHeader(200, {'Content-Type': 'text/xml'})
+	                    res.end(product)
+	                    return
+					}
+					else{
+						res.writeHeader(404, {'Content-Type': 'text/plain'})
+	                    res.end("Can't read file")
+	                    return
+					}
+				}
 				break
 
 			}

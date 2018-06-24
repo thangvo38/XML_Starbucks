@@ -131,6 +131,7 @@ jQuery(document).ready(function($){
         console.log("Clicked")
 
         $.ajax({
+            url: '/',
             type:"POST",
             headers: {
                 "action": "logout"
