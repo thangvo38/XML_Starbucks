@@ -24,6 +24,10 @@
     <link rel="stylesheet" href="css/owl.theme.default.css">
     <script src="js/owl.carousel.js"></script>
 
+    <!-- Sweet Alert -->
+    <script src="./sweetalert/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./sweetalert/sweetalert.css">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -40,7 +44,7 @@
                     <div class="user-menu">
                         <ul>
                             <li>
-                                <a href = "/" id="logOut" type="button">Back</a>
+                                <a id="logOut" type="button">Back</a>
                             </li>
                         </ul>
                     </div>
@@ -61,7 +65,7 @@
                                         <span><img src="img/starbucks_logo.jpg"></span>
                                 </div>
                                 <div style="margin-top: 25px;" class ="col-sm-4">
-                                    <a href="index.html">Starbucks</a>
+                                    <a href="">Starbucks</a>
                                 </div>
                             </div>
                         </h1>
@@ -87,10 +91,10 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="">Home</a>
                         </li>
                         <li>
-                            <a href="clients/about.html">About</a>
+                            <a id="aboutClick">About</a>      
                         </li>
                     </ul>
                 </div>
@@ -295,6 +299,8 @@
     
     <!-- jQuery easing -->
     <script src="js/jquery.easing.1.3.min.js"></script>
+    
+    <script src="js/logout.js"></script>
     
     <!-- Main Script -->
     <script src="js/main.js"></script>

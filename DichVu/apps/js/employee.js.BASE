@@ -269,53 +269,33 @@ $('#product_click').click(function(){
                 }
             break;
         }
-        var isAvailable = false;
-        for(var i = 0;i<sp.length;i++)
-        {
-            if(sp[i].getAttribute("Ten") == product.getAttribute("Ten"))
-            {
-                isAvailable = true;
-                sp[i].setAttribute("So_luong",parseInt(sp[i].getAttribute("So_luong")) + parseInt(quantity));
-                total += parseInt(product.getAttribute("Gia_ban"))*parseInt(quantity);
-                var product_row = cus_order.getElementsByTagName("tr")[i];
-                product_row.getElementsByTagName("td")[3].innerHTML = parseInt(product_row.getElementsByTagName("td")[3].innerHTML) + parseInt(quantity) 
-                product_row.getElementsByTagName("td")[4].innerHTML = parseInt(product.getAttribute("Gia_ban"))* parseInt(product_row.getElementsByTagName("td")[3].innerHTML)
-
-                break;
-            }
-        }
-        if (!isAvailable){
-            var pro_no = document.createElement("td");
-            pro_no.innerHTML = num;
-            var pro_name = document.createElement("td");
-            pro_name.innerHTML = product.getAttribute("Ten");
-            var pro_price = document.createElement("td");
-            pro_price.innerHTML = product.getAttribute("Gia_ban")
-            var pro_quantity = document.createElement("td");
-            pro_quantity.innerHTML = quantity;
-            var pro_total = document.createElement("td");
-            pro_total.innerHTML = (parseInt(product.getAttribute("Gia_ban"))*parseInt(quantity));
-            total += parseInt(product.getAttribute("Gia_ban"))*parseInt(quantity);
-            var row = document.createElement("tr");
-            row.innerHTML = `<input type="hidden" name="proId" value="${product.getAttribute("Ma_so")}" />`+
-            `<input type="hidden" name="proQuantity" value="${quantity}" />`
-            row.appendChild(pro_no)
-            row.appendChild(pro_name)
-            row.appendChild(pro_price)
-            row.appendChild(pro_quantity)
-            row.appendChild(pro_total)
-            cus_order.appendChild(row);
-            var San_Pham = document.createElement("San_Pham");
-            San_Pham.setAttribute("Gia_ban",product.getAttribute("Gia_ban"))
-            San_Pham.setAttribute("So_luong",quantity)
-            San_Pham.setAttribute("Ten",product.getAttribute("Ten"))
-            San_Pham.setAttribute("Ma_so",product.getAttribute("Ma_so"))
-            sp.push(San_Pham);
-            num++;
-        }
+        var pro_no = document.createElement("td");
+        pro_no.innerHTML = num;
+        var pro_name = document.createElement("td");
+        pro_name.innerHTML = product.getAttribute("Ten");
+        var pro_price = document.createElement("td");
+        pro_price.innerHTML = product.getAttribute("Gia_ban")
+        var pro_quantity = document.createElement("td");
+        pro_quantity.innerHTML = quantity;
+        var pro_total = document.createElement("td");
+        pro_total.innerHTML = (parseInt(product.getAttribute("Gia_ban"))*parseInt(quantity));
+        total += parseInt(product.getAttribute("Gia_ban"))*parseInt(quantity);
+        var row = document.createElement("tr");
+        row.appendChild(pro_no)
+        row.appendChild(pro_name)
+        row.appendChild(pro_price)
+        row.appendChild(pro_quantity)
+        row.appendChild(pro_total)
+        cus_order.appendChild(row);
+        var San_Pham = document.createElement("San_Pham");
+        San_Pham.setAttribute("Gia_ban",product.getAttribute("Gia_ban"))
+        San_Pham.setAttribute("So_luong",quantity)
+        San_Pham.setAttribute("Ten",product.getAttribute("Ten"))
+        San_Pham.setAttribute("Ma_so",product.getAttribute("Ma_so"))
+        sp.push(San_Pham);
         var intotal = document.getElementById("customer_order_total");
         intotal.innerHTML=total;
-        
+        num++;
     }
 })
 

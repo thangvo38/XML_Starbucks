@@ -59,7 +59,7 @@
                                         <span><img src="img/starbucks_logo.jpg"></span>
                                 </div>
                                 <div style="margin-top: 25px;" class ="col-sm-4">
-                                    <a href="index.html">Starbucks</a>
+                                    <a href="">Starbucks</a>
                                 </div>
                             </div>
                         </h1>
@@ -85,10 +85,10 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="">Home</a>
                         </li>
                         <li>
-                            <a href="clients/about.html">About</a>
+                            <a href="">About</a>
                         </li>
                     </ul>
                 </div>
@@ -245,19 +245,20 @@
             <form onsubmit="return false;">
                 <label>ID: </label>
                 <label id="formID" for="maSo"></label>
+                <input id="inputID" type="hidden" name="id"/>
                 <div class="form-group">
                     <label >Price</label>
                     <!-- name = giaBan_MaSP -->
-                    <input type="number" min="0" class="form-control"  id="formPrice" name="giaBan"> 
+                    <input type="number" min="0" class="form-control"  id="formPrice" name="price"> 
                 </div>
                 <div class="form-group">
                     <label>Status</label>
                     <div class="checkbox">
                         <!-- name = tamNgung_MaSP -->
-                        <label><input  id="formStatus" checked="true" type="checkbox" name="tamNgung">  Close</label>
+                        <label><input  id="formStatus" checked="true" type="checkbox" name="status">  Close</label>
                     </div>
                 </div>
-                <button id="submitBtn" class="btn btn-success">OK</button>
+                <button type="button" id="submitBtn" class="btn btn-success">OK</button>
             </form>
         </div>
         <div class="modal-footer">
@@ -314,7 +315,9 @@
     
     <!-- jQuery easing -->
     <script src="js/jquery.easing.1.3.min.js"></script>
-    
+
+    <script src="js/logout.js"></script>
+
     <!-- Main Script -->
     <script src="js/main.js"></script>
     <script src="js/manager.js"></script>

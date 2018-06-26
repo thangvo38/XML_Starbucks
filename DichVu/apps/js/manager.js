@@ -4,19 +4,22 @@ $(document).ready(function(){
 
 	//Lấy thông tin khi bấm nút chỉnh sửa
 	$("#submitBtn").click(function(){
-		console.log("Clicked")
-		var http = new XMLHttpRequest()
-		var params = [$("#formID").html(),$("#formPrice").val(),$("#formStatus").is(':checked') ? true:false]
-		console.log(params[2])
+		var id = $("#formID").html()
+		var price = $("#formPrice").val()
+		var status = $("#formStatus").is(':checked') ? true:false
+		var data = {
+			session: getCookie(document.cookie,"session"),
+			id: id,
+			price: price,
+			status: status
+		}
 
+		console.log(data)
+		
 		$.ajax({
             type:"POST",
-            url: "changeData",
-            headers:{
-                "id":params[0],
-                "price":params[1],
-                "status":params[2]
-            },
+			url: "http://localhost:3001/changedata",
+			data: JSON.stringify(data),
             error: function(error){
             	alert("Unexpected Error")
             },
@@ -24,26 +27,7 @@ $(document).ready(function(){
                 alert("Changed!")
                 location.reload()
             }
-        })
-
-		// http.open("POST","http://localhost:3001/change")
-		// http.setRequestHeader("id", params[0])
-		// http.setRequestHeader("price", params[1])
-		// http.setRequestHeader("status", params[2])
-
-		// http.onreadystatechange = function () {
-	 //        if (http.readyState == 4 && http.status == 200)
-	 //        {
-	 //            alert("Product Updated!")
-	 //            location.reload()
-	 //        }
-	 //        else
-	 //        	if(http.status == 404)
-		//             alert("Error: Can't load data")
-  //   	}
-
-		// http.send()
-
+		})
 		
 	})
 })
@@ -136,6 +120,26 @@ function clickEdit(id){
 	console.log(nodes[4].innerHTML)
 	$("#formName").html(nodes[1].innerHTML)
 	$("#formID").html(nodes[0].innerHTML)
+	$("#inputID").val(nodes[0].innerHTML)
 	$("#formPrice").val(nodes[2].innerHTML)
 	$("#formStatus").attr("checked",(nodes[4].innerHTML == "Open")? false:true)
 }
+
+//Get Cookie
+function getCookie(cookie,cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+
+    return '';
+}
+//End

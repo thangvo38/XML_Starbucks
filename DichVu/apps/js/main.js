@@ -126,23 +126,8 @@ jQuery(document).ready(function($){
         $(this).find(".dropdown-toggle").dropdown("toggle")
     })
 
-//Log out
-    $("#logOut").click(function(){
-        console.log("Clicked")
 
-        $.ajax({
-            type:"POST",
-            headers: {
-                "action": "logout"
-            },
-            error: function(error){
-                alert("ERROR: " + error)
-            },
-            success: function(data){
-                document.cookie = 'session='
-                location.reload()
-            }
-        })
+    $("#aboutClick").click(function () {
+        alert("AAAA")
     })
-    
 });

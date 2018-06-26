@@ -5,6 +5,8 @@ var url = require('url')
 var sha256 = require('js-sha256');
 var port = 3001
 
+var changeDataAction = require('./action/changeDataAction')
+
 //Get Cookie
 function getCookie(cookie,cname) {
     var name = cname + "=";
@@ -69,7 +71,7 @@ http.createServer((req,res)=>{
 		case "POST":
 			switch(req.url){
 				//Kiểm tra tài khoản đăng nhập
-				case "/login":
+				case "/login":{
 					options = {
 						host: 'localhost',
 		    			port: 3002,
@@ -126,11 +128,12 @@ http.createServer((req,res)=>{
 		            	res.writeHead(404, 'Not found')
 					    res.end("404 NOT FOUND")
 					    return
-		            })
-					break
+		            })		
+				}
+				break
 
 				//Kiểm tra role để load website
-				case "/getrole":
+				case "/getrole":{
 					var token = req.headers["session"]
 					console.log(token)
 					//Trường hợp là khách
@@ -152,10 +155,11 @@ http.createServer((req,res)=>{
 					//Lỗi
 					res.writeHeader(404, {'Content-Type': 'text/plain'})
 		            res.end("Request was not support!!!")
-					break
+				}
+				break
 
 				//Kiểm tra điều kiện để thực hiện đăng xuất
-				case "/logout":
+				case "/logout":{
 					var index = sessions.indexOf(req.headers["session"])
 					console.log(index)
 					//Kiểm tra lỗi
@@ -173,8 +177,54 @@ http.createServer((req,res)=>{
 			        writeSession()
 			        res.writeHeader(200, {'Content-Type': 'text/plain'})
 		            res.end("Session removed")
-		            return
-					break
+		            return				
+				}
+				break
+
+				//Thay đổi thông tin sản phẩm
+				case "/changedata":{
+					var body = ''
+					req.on('data',chunk=>{
+						body+=chunk
+					})
+			
+					req.on('end',()=>{
+						changeDataAction.call(body,sessions)
+						.then(result=>{
+							console.log("Success")
+							//Kiểm tra trong cache
+							if(cacheProducts != null){
+								var data = JSON.parse(result)
+								var products = cacheProducts["DanhSach"]["San_Pham"]
+								for(var i =0;i<products.length;i++){
+									if(products[i]['$']["Ma_so"] == data.id) {
+										products[i]['$']["Gia_ban"] = data.price
+										products[i]['$']["Tam_ngung"] = data.status
+
+										cacheProducts["DanhSach"]["San_Pham"][i] = products[i]
+										console.log(cacheProducts["DanhSach"]["San_Pham"][i])
+										break
+									}
+								}
+
+								res.writeHeader(200, {
+									'Content-Type': 'text/plain',
+									'Access-Control-Allow-Origin': '*'
+								})
+								res.end("Data Changed")
+								return
+							}
+						})
+						.catch(err=>{
+							res.writeHeader(404, {'Content-Type': 'text/plain'})
+							res.end(err)
+							return
+						})	
+
+					});
+					
+				}
+				break
 			}
 			break
 		case "GET":
@@ -186,8 +236,8 @@ http.createServer((req,res)=>{
 					// if(sessions.indexOf(cookie) == -1){
 					// 	console.log("AUTH ERR")
 					// 	res.writeHeader(404, {'Content-Type': 'text/plain'})
-     //                	res.end("Authentication Error")
-     //                	return
+	    			// 	res.end("Authentication Error")
+	     			//  return
 					// }
 
 					if(cacheProducts != null){
@@ -284,26 +334,7 @@ http.createServer((req,res)=>{
 		case "OPTIONS":
 			switch(req.url){
 				//Thay đổi đơn giá bán và trại thái của sản phẩm
-				case "/change":
-					console.log("HEADERS: " + req.headers)
-					//Kiểm tra trong cache
-					if(cacheProducts != null){
-						var products = cacheProducts["DanhSach"]["San_Pham"]
-						for(var i =0;i<products.length;i++){
-							if(products[i]['$']["id"] == req.headers["id"]){
-								products[i]['$']["Gia_ban"] = req.headers["price"]
-								products[i]['$']["Tam_ngung"] = req.headers["status"]
-								res.writeHeader(200, {'Content-Type': 'text/plain'})
-			            		res.end()
-			            		return
-							}
-						}
-					}
-
-					res.writeHeader(404, {'Content-Type': 'text/plain'})
-		            res.end()
-		            return
-					break
+				
 			}
 			break
 	}
