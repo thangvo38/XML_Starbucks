@@ -5,6 +5,8 @@ var url = require('url')
 var sha256 = require('js-sha256');
 var port = 3001
 
+var changeDataAction = require('./action/changeDataAction')
+
 //Get Cookie
 function getCookie(cookie,cname) {
     var name = cname + "=";
@@ -126,9 +128,9 @@ http.createServer((req,res)=>{
 		            	res.writeHead(404, 'Not found')
 					    res.end("404 NOT FOUND")
 					    return
-		            })
-					break
+		            })		
 				}
+				break
 
 				//Kiểm tra role để load website
 				case "/getrole":{
@@ -153,8 +155,8 @@ http.createServer((req,res)=>{
 					//Lỗi
 					res.writeHeader(404, {'Content-Type': 'text/plain'})
 		            res.end("Request was not support!!!")
-					break
 				}
+				break
 
 				//Kiểm tra điều kiện để thực hiện đăng xuất
 				case "/logout":{
@@ -175,73 +177,54 @@ http.createServer((req,res)=>{
 			        writeSession()
 			        res.writeHeader(200, {'Content-Type': 'text/plain'})
 		            res.end("Session removed")
-		            return
-					break
+		            return				
 				}
+				break
 
 				//Thay đổi thông tin sản phẩm
 				case "/changedata":{
-					//Kiểm tra session
-					var token = req.headers["session"]
-					var index = sessions.indexOf(token)
-					if(index == -1){
-						res.writeHeader(404, {'Content-Type': 'text/plain'})
-		            	res.end("Request was not support!!!")
-		            	return
-					}
+					var body = ''
+					req.on('data',chunk=>{
+						body+=chunk
+					})
+			
+					req.on('end',()=>{
+						changeDataAction.call(body,sessions)
+						.then(result=>{
+							console.log("Success")
+							//Kiểm tra trong cache
+							if(cacheProducts != null){
+								var data = JSON.parse(result)
+								var products = cacheProducts["DanhSach"]["San_Pham"]
+								for(var i =0;i<products.length;i++){
+									if(products[i]['$']["Ma_so"] == data.id) {
+										products[i]['$']["Gia_ban"] = data.price
+										products[i]['$']["Tam_ngung"] = data.status
 
-					//Kiểm tra trong cache
-					if(cacheProducts != null){
-						var products = cacheProducts["DanhSach"]["San_Pham"]
-						for(var i =0;i<products.length;i++){
-							if(products[i]['$']["Ma_so"] == req.headers["id"]) {
-								products[i]['$']["Gia_ban"] = req.headers["price"]
-								products[i]['$']["Tam_ngung"] = req.headers["status"]
+										cacheProducts["DanhSach"]["San_Pham"][i] = products[i]
+										console.log(cacheProducts["DanhSach"]["San_Pham"][i])
+										break
+									}
+								}
+
+								res.writeHeader(200, {
+									'Content-Type': 'text/plain',
+									'Access-Control-Allow-Origin': '*'
+								})
+								res.end("Data Changed")
+								return
 							}
-						}
-					}
+						})
+						.catch(err=>{
+							res.writeHeader(404, {'Content-Type': 'text/plain'})
+							res.end(err)
+							return
+						})	
 
-					options = {
-						host: 'localhost',
-		    			port: 3002,
-		    			path: "/changedata",
-		    			method: "POST",
-		    			headers: {
-		    				"id": req.headers.id,
-							"price": req.headers.price,
-							"status": req.headers.status
-		    			}
-					}
-
-		    		var httpReq = http.get(options,function (response) {
-
-			            response.on('error',function(){
-			            	console.log("ERROR=>Can't get data from users file")
-		    				res.writeHeader(404, {'Content-Type': 'text/plain'})
-		                    res.end("Request was not support!!!")
-		                    return
-			            })
-
-			            response.on('end',function(){
-							res.writeHeader(200, {'Content-Type': 'text/plain'})
-			            	res.end()
-		                    return
-			            })
-			        })
-
-			        //Trường hợp không kết nối được đến server
-		            httpReq.on('error',function(){
-		            	console.log("Can't connect to DAL Server")
-		            	res.writeHead(404, 'Not found')
-					    res.end("404 NOT FOUND")
-					    return
-		            })
-
-					res.writeHeader(404, {'Content-Type': 'text/plain'})
-		            res.end()
-		            return
-					break
+					});
+					
 				}
+				break
 			}
 			break
 		case "GET":

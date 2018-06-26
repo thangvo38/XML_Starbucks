@@ -1,0 +1,6 @@
+<root Ma_so="SP_12" Ten="Espresso Con Panna" Gia_ban="40000" Tam_ngung="false" Mo_ta="Espresso meets a dollop of whipped cream to enhance the rich and caramelly flavors of a straight-up shot.">
+  <Loai_SP Ma_Loai="CAFE" Ten_Loai="Coffee"/>
+  <Ma_so>SP_12</Ma_so>
+  <Gia_ban>SP_12</Gia_ban>
+  <Tam_ngung>true</Tam_ngung>
+</root>

@@ -281,6 +281,9 @@ $('#product_click').click(function(){
         pro_total.innerHTML = (parseInt(product.getAttribute("Gia_ban"))*parseInt(quantity));
         total += parseInt(product.getAttribute("Gia_ban"))*parseInt(quantity);
         var row = document.createElement("tr");
+        row.innerHTML = `<input type="hidden" name="proId" value="${product.getAttribute("Ma_so")}" />`+
+        `<input type="hidden" name="proQuantity" value="${quantity}" />`
+
         row.appendChild(pro_no)
         row.appendChild(pro_name)
         row.appendChild(pro_price)

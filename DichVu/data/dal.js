@@ -2,7 +2,7 @@ var http = require('http')
 var fs = require('fs')
 var xml2js = require('xml2js')
 var sha256 = require('js-sha256');
-var service = require('/dataService/dataService.js')
+var updateProductAction = require('./action/updateProductAction')
 var port = 3002
 
 http.createServer((req,res)=>{
@@ -12,7 +12,7 @@ http.createServer((req,res)=>{
 			switch(req.url){
 				case "/login":{
 					var hashCode = ''
-					var users = fs.readFileSync("../DuLieu/TaiKhoan/taikhoan.xml","utf-8")
+					var users = fs.readFileSync("./DuLieu/TaiKhoan/taikhoan.xml","utf-8")
 					var parser = new xml2js.Parser()
 	    			parser.parseString(users,function(err,result){
 	    				console.log(JSON.stringify(result))
@@ -40,9 +40,10 @@ http.createServer((req,res)=>{
 	    			})
 	    		}
 				break
+
 				case "/getProduct":{
 					console.log(req.headers.id)
-					var product = fs.readFileSync(`../DuLieu/SanPham/${req.headers.id}.xml`,"utf-8")
+					var product = fs.readFileSync(`./DuLieu/SanPham/${req.headers.id}.xml`,"utf-8")
 					if(product != null){
 						console.log(product)
 						res.writeHeader(200, {'Content-Type': 'text/xml'})
@@ -56,19 +57,35 @@ http.createServer((req,res)=>{
 					}
 				}
 				break
+
 				case "/changedata":{
-					var productXml = fs.readFileSync(`../DuLieu/SanPham/${req.headers.id}.xml`,"utf-8")
-					if(productXml != null){
-						product
-						res.writeHeader(200, {'Content-Type': 'text/xml'})
-	                    res.end(product)
-	                    return
-					}
-					else{
-						res.writeHeader(404, {'Content-Type': 'text/plain'})
-	                    res.end("Can't read file")
-	                    return
-					}
+					var body = ''
+					req.on('data',chunk=>{
+						body+=chunk
+					})
+
+					req.on('end',()=>{
+						console.log(body)
+						var data = JSON.parse(body)
+						var id = data.id,
+							price = data.price,
+							status = data.status
+
+						updateProductAction.call(id,price,status,__dirname+'/DuLieu')
+						.then(result=>{
+							console.log("Success")
+							res.writeHeader(200, {'Content-Type': 'text/xml'})
+							res.end(result)
+							return
+						})
+						.catch(err=>{
+							console.log(err.toString())
+							res.writeHeader(404, {'Content-Type': 'text/plain'})
+							res.end(err.toString())
+							return
+						})
+					});
+					
 				}
 				break
 
@@ -77,7 +94,7 @@ http.createServer((req,res)=>{
 		case "GET":
 		switch(req.url){
 				case "/getdata":
-					var dir = "../DuLieu/SanPham/";
+					var dir = "./DuLieu/SanPham/";
 					var data= "<DanhSach>";
 					fs.readdirSync(dir).forEach(files => {
 						var file_dir = dir + files
@@ -98,7 +115,7 @@ http.createServer((req,res)=>{
 					}
 				break
 				case "/getPhieuBanHang":
-					var dir = "../DuLieu/PhieuBanHang/";
+					var dir = "./DuLieu/PhieuBanHang/";
 					var data= "<DanhSach>";
 					data += fs.readFileSync(dir + "PhieuBanHang.xml","utf-8");
 					data += "</DanhSach>"
@@ -120,7 +137,7 @@ http.createServer((req,res)=>{
 
 			if (req.url.split("?")[0] == "/viewProduct")
 			{
-				var dir = "../DuLieu/SanPham/";
+				var dir = "./DuLieu/SanPham/";
 				var data= "<DanhSach>";
 				data += fs.readFileSync(dir + "SP_" + req.url.split("?")[1]+".xml","utf-8");
 				data += "</DanhSach>"
