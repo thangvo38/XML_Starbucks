@@ -72,6 +72,21 @@ function GetPhieuBanHang()
             var productname = document.getElementById("product_choose");
             for(var i = 0 ;i<data[0].length;i++)
             {
+                while (1)
+                {
+                    if (data[0][i].getAttribute("Tam_ngung") == "true")
+                    {
+                        i++;
+                        if (i >= data[0].length)
+                        {
+                            endOfArray = true;
+                            break;
+                        }
+                    }   
+                    else{
+                        break;
+                    }
+                }
                 var option = document.createElement("option")
                 option.value = data[0][i].getAttribute("Ten")
                 option.innerHTML = data[0][i].getAttribute("Ten")
@@ -96,8 +111,27 @@ function showData(Data,num)
     var row = document.createElement("div");
     row.setAttribute("class","row");
     var container_all = document.createElement("div")
+    var endOfArray = false;
     for(var i = 0 ;i<Data[num].length;i++)
     {  
+        while (1)
+        {
+            if (Data[num][i].getAttribute("Tam_ngung") == "true")
+            {
+                i++;
+                if (i >= Data[num].length)
+                {
+                    endOfArray = true;
+                    break;
+                }
+            }   
+            else{
+                break;
+            }
+        }
+
+        if(endOfArray)
+            break;
         if (count > 4)
         {
             container_all.appendChild(row);
@@ -179,6 +213,21 @@ $('#product_type').change(function(){
         case "Coffee":
             for(var i = 0 ;i<data[0].length;i++)
             {
+                while (1)
+                {
+                    if (data[0][i].getAttribute("Tam_ngung") == "true")
+                    {
+                        i++;
+                        if (i >= data[0].length)
+                        {
+                            endOfArray = true;
+                            break;
+                        }
+                    }   
+                    else{
+                        break;
+                    }
+                }
                 var option = document.createElement("option")
                 option.value = data[0][i].getAttribute("Ten")
                 option.innerHTML = data[0][i].getAttribute("Ten")
@@ -189,6 +238,21 @@ $('#product_type').change(function(){
         case "Tea":
             for(var i = 0 ;i<data[1].length;i++)
             {
+                while (1)
+                {
+                    if (data[1][i].getAttribute("Tam_ngung") == "true")
+                    {
+                        i++;
+                        if (i >= data[1].length)
+                        {
+                            endOfArray = true;
+                            break;
+                        }
+                    }   
+                    else{
+                        break;
+                    }
+                }
                 var option = document.createElement("option")
                 option.value = data[1][i].getAttribute("Ten")
                 option.innerHTML = data[1][i].getAttribute("Ten")
@@ -198,7 +262,22 @@ $('#product_type').change(function(){
 
         case "FrapBlended":
             for(var i = 0 ;i<data[2].length;i++)
-            {
+            {                
+                while (1)
+                {
+                    if (data[2][i].getAttribute("Tam_ngung") == "true")
+                    {
+                        i++;
+                        if (i >= data[2].length)
+                        {
+                            endOfArray = true;
+                            break;
+                        }
+                    }   
+                    else{
+                        break;
+                    }
+                }
                 var option = document.createElement("option")
                 option.value = data[2][i].getAttribute("Ten")
                 option.innerHTML = data[2][i].getAttribute("Ten")
@@ -209,6 +288,21 @@ $('#product_type').change(function(){
         case "FrapCream":
             for(var i = 0 ;i<data[3].length;i++)
             {
+                while (1)
+                {
+                    if (data[3][i].getAttribute("Tam_ngung") == "true")
+                    {
+                        i++;
+                        if (i >= data[3].length)
+                        {
+                            endOfArray = true;
+                            break;
+                        }
+                    }   
+                    else{
+                        break;
+                    }
+                }
                 var option = document.createElement("option")
                 option.value = data[3][i].getAttribute("Ten")
                 option.innerHTML = data[3][i].getAttribute("Ten")
@@ -365,7 +459,8 @@ function getCurrentDay()
     return today;
 }
 
-function rewritePhieuBanHang(PhieuBanHang)
-{
+
+// function rewritePhieuBanHang(PhieuBanHang)
+// {
    
-}
+// }
