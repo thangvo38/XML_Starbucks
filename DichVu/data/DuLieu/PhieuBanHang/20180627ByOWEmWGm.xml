@@ -1,6 +1,0 @@
-<Phieu_Ban_Hang MaPhieu="20180627ByOWEmWGm" Ngay="2018-06-27" HoTen="Thang Vo" DienThoai="345546456" DiaChi="TQC" HoTenNhanVien="Võ Hữu Thắng" TongTien="480000">
-  <Danh_Sach_San_Pham>
-    <San_Pham Ma_so="SP_1" Ten="Hazelnut Macchiato" So_luong="4" Gia_ban="50000"/>
-    <San_Pham Ma_so="SP_2" Ten="Ristretto Bianco" So_luong="4" Gia_ban="70000"/>
-  </Danh_Sach_San_Pham>
-</Phieu_Ban_Hang>

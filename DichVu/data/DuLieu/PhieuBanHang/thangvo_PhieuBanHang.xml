@@ -1,0 +1,13 @@
+<Danh_Sach_Phieu_Ban_Hang>
+  <Phieu_Ban_Hang MaPhieu="rJSxrSWMQ" Ngay="2018-06-28" HoTen="Thang Vo" DienThoai="5434535345" DiaChi="TQC" HoTenNhanVien="Võ Hữu Thắng" TongTien="244000">
+    <Danh_Sach_San_Pham>
+      <San_Pham Ma_so="SP_1" Ten="Hazelnut Macchiato" So_luong="2" Gia_ban="50000"/>
+      <San_Pham Ma_so="SP_17" Ten="Iced Caramel Macchiato" So_luong="2" Gia_ban="72000"/>
+    </Danh_Sach_San_Pham>
+  </Phieu_Ban_Hang>
+  <Phieu_Ban_Hang MaPhieu="H1dZHB-MX" Ngay="2018-06-28" HoTen="zxczxc" DienThoai="234234" DiaChi="qweqweq" HoTenNhanVien="Võ Hữu Thắng" TongTien="70000">
+    <Danh_Sach_San_Pham>
+      <San_Pham Ma_so="SP_18" Ten="Latte Macchiato" So_luong="1" Gia_ban="70000"/>
+    </Danh_Sach_San_Pham>
+  </Phieu_Ban_Hang>
+</Danh_Sach_Phieu_Ban_Hang>

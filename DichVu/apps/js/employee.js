@@ -427,7 +427,6 @@ $('#Buy_button').click(function(){
             },
             success: function(data){
                 var text = "";
-                var totalCost = 0;
 
                 var billSp = data.getElementsByTagName("San_Pham");
                 for(var i =0;i<billSp.length;i++)
@@ -435,10 +434,9 @@ $('#Buy_button').click(function(){
                     text+= (i+1) + ". " + sp[i].getAttribute("Ten") + " - ";
                     text+= sp[i].getAttribute("So_luong") + "pcs - " + (parseInt(sp[i].getAttribute("So_luong"))*parseInt(sp[i].getAttribute("Gia_ban"))) +" VND"
                     text+= "\n"
-                    totalCost += sp[i].getAttribute("Gia_ban")
                 }
                 text += "--------------------------------------------------------------------------------\n"
-                text += "In total: " + totalCost + " VND";
+                text += "In total: " + data.getElementsByTagName("root")[0].getAttribute("TongTien") + " VND";
                 swal("Order Information:",text)
                 .then( () => {
                     location.reload()

@@ -28,3 +28,36 @@ exports.generateProductListXml = (root) => {
 
     return data
 }
+
+exports.getBillByUsername = (root,username) => {
+    return new Promise((resolve,reject)=>{
+        var bill = ''
+        try{
+            bill = fs.readFileSync(`${root}/PhieuBanHang/${username}_PhieuBanHang.xml`,"utf-8")
+        }catch(err){
+            console.log(err) 
+        }
+
+        if(bill == '' || bill == null){
+            bill = "<Danh_Sach_Phieu_Ban_Hang></Danh_Sach_Phieu_Ban_Hang>"
+        }
+
+        var parser = new xml2js.Parser()
+
+        parser.parseString(bill,(err,result)=>{
+            if(err){
+            console.log("Fail")
+            reject(common.ERROR_CANNOT_PARSE)
+                return
+            }
+            console.log(JSON.stringify(result))
+
+            resolve(result)
+        })
+    })
+
+   
+    
+}
+
+

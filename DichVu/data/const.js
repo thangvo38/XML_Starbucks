@@ -6,8 +6,7 @@ module.exports = {
     ERROR_CANNOT_PARSE : "Cannot parse data",
     SUCCESS_EDIT_FILE : "Succesfully Edited File",
     ERROR_NO_USER: "User Doesn't Exist",
-    TEMPLATE_BILL : `{"Phieu_Ban_Hang":{
-        "$":{
+    TEMPLATE_BILL : `{"$":{
             "MaPhieu":"",
             "Ngay":"",
             "HoTen":"",
@@ -18,7 +17,6 @@ module.exports = {
         },
         "Danh_Sach_San_Pham":{
             "San_Pham":[]
-        }
         }
     }`
 

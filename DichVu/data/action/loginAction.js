@@ -14,7 +14,7 @@ exports.call = (body,root) => {
         var parser = new xml2js.Parser()
         parser.parseString(users, function (err, result) {
             console.log(JSON.stringify(result))
-            var name = ''
+            var name = '',id=''
 
             var userList = result['DanhSachTaiKhoan']['TaiKhoan']
             for (var i = 0; i < userList.length; i++) {
@@ -23,6 +23,7 @@ exports.call = (body,root) => {
                 if (user.id == data.username &&
                     user.password == data.password && user.QuanLi.toString() == data.manager.toString()) {
                     name = user.ten
+                    id = user.id
                     var isManager = user.QuanLi.toString() == "true" ? "1" : "0"
                     console.log("Is Manager: " + isManager)
                     hashCode = isManager + sha256(user.id + user.password)
@@ -38,6 +39,7 @@ exports.call = (body,root) => {
             var info = {
                 "name": name,
                 "session": hashCode,
+                "id": id
             }
             console.log("Info: " + JSON.stringify(info))
             resolve(JSON.stringify(info))
