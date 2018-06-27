@@ -7,14 +7,19 @@ $(document).ready(function(){
 		var id = $("#formID").html()
 		var price = $("#formPrice").val()
 		var status = $("#formStatus").is(':checked') ? true:false
+
+		var checkNum = Number(price)
+		if(checkNum == NaN || checkNum < 0){
+			swal("Invalid Price")
+			return
+		}
+
 		var data = {
 			session: getCookie(document.cookie,"session"),
 			id: id,
-			price: price,
+			price: checkNum,
 			status: status
 		}
-
-		console.log(data)
 		
 		$.ajax({
             type:"POST",
@@ -25,8 +30,8 @@ $(document).ready(function(){
             },
             success: function(data){
 				var text = "";
-				text+= $("#formID").html() + " - ";
-				text+= $("#formPrice").val() + " - " + ($("#formStatus").is(':checked') ? "true":"false")
+				text+= id + " - ";
+				text+= checkNum + " - " + status
 				text+= "\n"
                 swal("Product Info Updated",text)
                 .then( () => {
@@ -46,7 +51,6 @@ function SendDataRequest(){
         if (http.readyState == 4 && http.status == 200)
         {
             console.log("Response received")
-            console.log(http.response)
             var xml = (new DOMParser()).parseFromString(http.response,'text/xml')
             CreateTable(xml)
         }
@@ -60,7 +64,6 @@ function SendDataRequest(){
 
 function CreateTable(xml){
 	var products = xml.getElementsByTagName("San_Pham")
-	// console.log(products.length)
 	for(var i = 0;i<products.length;i++){
 		var catg = products[i].getElementsByTagName("Loai_SP")[0]
 		var div = null 
@@ -92,7 +95,6 @@ function CreateTable(xml){
 			products[i].getAttribute("Mo_ta"),
 			products[i].getAttribute("Tam_ngung")=="false" ? "Open" : "Closed"]
 			tr.setAttribute("id",attr[0])
-			// console.log(i)
 			for(var j =0;j<6;j++){
 				var td = document.createElement("td")
 				if(j!=2){
@@ -107,7 +109,7 @@ function CreateTable(xml){
 			var btn = document.createElement("button")
 			btn.setAttribute("class","btn btn-info")
 			btn.setAttribute("id",attr[0])
-			btn.setAttribute("onclick","clickEdit(this.id)")
+			btn.setAttribute("onclick","return clickEdit(this.id)")
 			btn.setAttribute("data-toggle","modal")
 			btn.setAttribute("data-toggle","modal")
 			btn.setAttribute("data-target","#myModal")
@@ -127,14 +129,11 @@ function CreateTable(xml){
 
 function clickEdit(id){
 	var nodes = document.getElementById(id).getElementsByTagName("td")
-	console.log(nodes[1].innerHTML)
-	console.log(nodes[2].innerHTML)
-	console.log(nodes[4].innerHTML)
 	$("#formName").html(nodes[1].innerHTML)
 	$("#formID").html(nodes[0].innerHTML)
 	$("#inputID").val(nodes[0].innerHTML)
-	$("#formPrice").val(nodes[2].innerHTML)
-	$("#formStatus").attr("checked",(nodes[4].innerHTML == "Open")? false:true)
+	$("#formPrice").val(Number(nodes[3].innerHTML))
+	$("#formStatus").attr("checked",(nodes[5].innerHTML == "Open")? false:true)
 }
 
 //Get Cookie
