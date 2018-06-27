@@ -16,11 +16,8 @@ exports.call = (body, userInfo) => {
         // }
 
         //Kiểm tra session
-        console.log("BUS: kiem tra session")
-        console.log(JSON.stringify(userInfo))
-        console.log(JSON.stringify(data))
         var findInfo = sessionAction.check(data.session, userInfo)
-        if (findInfo === null) {
+        if (findInfo === null || findInfo.session[0] == "1") {
             reject(common.ERROR_NO_SESSION);
             return
         }
