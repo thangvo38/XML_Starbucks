@@ -3,7 +3,6 @@ var sessionAction = require('./sessionAction')
 exports.call = (req,res,userInfo) => {
     var token = req.headers["session"]
 
-
     //Trường hợp là khách
     if (token == "$") {
         res.writeHeader(200, {

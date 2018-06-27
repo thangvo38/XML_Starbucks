@@ -17,3 +17,14 @@ exports.getSingleProduct = (id) =>{
         })
     })
 }
+
+exports.generateProductListXml = (root) => {
+    var data= "<DanhSach>";
+    fs.readdirSync(root).forEach(files => {
+        var file_dir = root + files
+        data += fs.readFileSync(file_dir,"utf-8");
+    });
+    data += "</DanhSach>"
+
+    return data
+}

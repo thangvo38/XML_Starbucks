@@ -3,7 +3,6 @@ var loginURL = 'http://localhost:3001/login'
 jQuery(document).ready(function($){
 
 	$("a#guestSubmit").bind('click',function(){
-        document.cookie = "session=$" //đánh dấu tài khoản khách
         var body =  {
             session : "$"
         }
@@ -12,11 +11,13 @@ jQuery(document).ready(function($){
             type:"POST",
             data: JSON.stringify(body),
             error: function(error){
-                alert(error.toString())
-                location.reload()
+                swal(error.toString(),text).then(()=>{
+                    location.reload()
+                })
             },
             success: function(data){
-                location.reload()
+                document.cookie = "session=$" //đánh dấu tài khoản khách
+                location.reload()             
             }
         })
 	})
@@ -33,12 +34,16 @@ jQuery(document).ready(function($){
             type:"POST",
             data: JSON.stringify(jBody),
             error: function(error){
-                alert(error.toString())
-                location.reload()
+                swal(error.toString(),text).then(()=>{
+                    location.reload()
+                })
             },
             success: function(data){
                 document.cookie = "session=" + data
-                location.reload()
+                swal("Good job!", "Logged In Succesfully!", "success")
+                .then( () =>{
+                    location.reload()
+                }) 
             }
         })
     })
@@ -55,13 +60,16 @@ jQuery(document).ready(function($){
             type:"POST",
             data: JSON.stringify(jBody),
             error: function(error){
-                alert(error.toString())
-                location.reload()
+                swal(error.toString(),text).then(()=>{
+                    location.reload()
+                })
             },
             success: function(data){
-                alert("Logged In")
                 document.cookie = "session=" + data
-                location.reload()
+                swal("Good job!", "Logged In Succesfully!", "success")
+                .then( () =>{
+                    location.reload()
+                })                      
             }
         })
     })

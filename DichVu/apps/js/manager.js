@@ -24,12 +24,11 @@ $(document).ready(function(){
             	alert("Unexpected Error")
             },
             success: function(data){
-				alert("Changed!")
 				var text = "";
 				text+= $("#formID").html() + " - ";
 				text+= $("#formPrice").val() + " - " + ($("#formStatus").is(':checked') ? "true":"false")
 				text+= "\n"
-                swal("Changed Information:",text)
+                swal("Product Info Updated",text)
                 .then( () => {
                     location.reload()
                 })

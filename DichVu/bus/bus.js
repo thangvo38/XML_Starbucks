@@ -11,6 +11,8 @@ var sessionAction = require('./action/sessionAction')
 var loginAction = require('./action/loginAction')
 var getRoleAction = require('./action/getRoleAction')
 var logoutAction = require('./action/logoutAction')
+var getDataAction = require('./action/getDataAction')
+
 //Get Cookie
 function getCookie(cookie, cname) {
 	var name = cname + "=";
@@ -35,10 +37,6 @@ function getCookie(cookie, cname) {
 var cacheProducts = null
 //Cache danh sách các user
 var userInfo = []
-var infoTemplate = {
-	name: "",
-	session: ""
-}
 // var sessions = []
 
 
@@ -65,10 +63,10 @@ http.createServer((req, res) => {
 							loginAction.call(body, userInfo)
 								.then(result => {
 									var info = JSON.parse(result)
-					
+
 									if (info.session != "$") {
 										userInfo.push(info)
-										writeSession()
+										//writeSession()
 									}
 
 									res.writeHeader(200, {
@@ -119,7 +117,7 @@ http.createServer((req, res) => {
 								return
 							} else {
 								userInfo = newInfo
-								writeSession()
+								//writeSession()
 								res.writeHeader(200, {
 									'Content-Type': 'text/plain',
 									'Access-Control-Allow-Origin': '*'
@@ -169,7 +167,8 @@ http.createServer((req, res) => {
 								})
 								.catch(err => {
 									res.writeHeader(404, {
-										'Content-Type': 'text/plain'
+										'Content-Type': 'text/plain',
+										'Access-Control-Allow-Origin': '*'
 									})
 									res.end(err)
 									return
@@ -193,15 +192,16 @@ http.createServer((req, res) => {
 							purchaseAction.call(body, userInfo)
 								.then(result => {
 									res.writeHeader(200, {
-										'Content-Type': 'text/plain',
+										'Content-Type': 'text/xml',
 										'Access-Control-Allow-Origin': '*'
 									})
-									res.end("Purchase Successfully")
+									res.end(result)
 									return
 								})
 								.catch(err => {
 									res.writeHeader(404, {
-										'Content-Type': 'text/plain'
+										'Content-Type': 'text/plain',
+										'Access-Control-Allow-Origin': '*'
 									})
 									res.end(err)
 									return
@@ -226,7 +226,8 @@ http.createServer((req, res) => {
 							var xml = builder.buildObject(cacheProducts);
 							res.setHeader("Access-Control-Allow-Origin", '*')
 							res.writeHeader(200, {
-								'Content-Type': 'text/plain'
+								'Content-Type': 'text/plain',
+								'Access-Control-Allow-Origin': '*'
 							})
 							res.end(xml)
 							return
@@ -234,67 +235,40 @@ http.createServer((req, res) => {
 
 						//Trường hợp cache rỗng => Load từ DAL
 						console.log("Cache is NULL")
-						options = {
-							host: 'localhost',
-							port: 3002,
-							path: "/getdata",
-							method: "GET"
-						}
-
-						var body = ''
-						var httpReq = http.get(options, function (response) {
-
-							//Lấy kết quả trả về (Nếu thành công: body=chuỗi xml danh sách sản phẩm)
-							response.on('data', function (chuck) {
-								body += chuck
-							})
-
-							//Trường hợp không lấy được data
-							response.on('error', function () {
-								console.log("ERROR=>Can't get data from users file")
-								res.writeHeader(404, {
-									'Content-Type': 'text/plain'
+						getDataAction.call()
+						.then(result => {
+							//Lưu vào cache
+							if (cacheProducts == null) {
+								var parser = new xml2js.Parser({
+									explicitArray: false
 								})
-								res.end("Request was not support!!!")
-								return
-							})
-
-							//Trường hợp lấy được data
-							response.on('end', function () {
-
-								//Lưu vào cache
-								if (cacheProducts == null) {
-									var parser = new xml2js.Parser({
-										explicitArray: false
-									})
-									parser.parseString(body, function (err, result) {
-										cacheProducts = result
-										res.setHeader("Access-Control-Allow-Origin", '*')
-										res.writeHeader(200, {
-											'Content-Type': 'text/plain'
-										})
-										res.end(body)
-										return
-									})
-								} else {
-									res.setHeader("Access-Control-Allow-Origin", '*')
+								parser.parseString(result, function (err, xml) {
+									cacheProducts = xml
 									res.writeHeader(200, {
-										'Content-Type': 'text/plain'
+										'Content-Type': 'text/plain',
+										'Access-Control-Allow-Origin': '*'
 									})
-									res.end(body)
+									res.end(result)
 									return
-								}
-
-							})
+								})
+							} else {
+								res.writeHeader(200, {
+									'Content-Type': 'text/plain',
+									'Access-Control-Allow-Origin': '*'
+								})
+								res.end(result)
+								return
+							}
 						})
-
-						//Trường hợp không kết nối được đến server
-						httpReq.on('error', function () {
-							console.log("Can't connect to DAL Server")
-							res.writeHead(404, 'Not found')
-							res.end("404 NOT FOUND")
+						.catch(err => {
+							res.writeHeader(404, {
+								'Content-Type': 'text/plain',
+								'Access-Control-Allow-Origin': '*'
+							})
+							res.end(err.toString())
 							return
 						})
+
 						break
 					}
 			}
@@ -305,29 +279,29 @@ http.createServer((req, res) => {
 	if (err)
 		console.log('==> Error: ' + err)
 	else {
-		getSession()
-		console.log('Server is starting at port ' + port)
+		//getSession()
+		console.log('BUS Server is starting at port ' + port)
 	}
 })
 
 //Read session from file
-function getSession() {
-	try {
-		var data = fs.readFileSync("session.ss", "utf-8")
-		if (data != null) {
-			console.log(data)
-			userInfo = JSON.parse(data)
-		}
-	} catch (err) {
-		console.log("READFILE=>" + err)
-	}
-}
+// function getSession() {
+// 	try {
+// 		var data = fs.readFileSync("session.ss", "utf-8")
+// 		if (data != null) {
+// 			console.log(data)
+// 			userInfo = JSON.parse(data)
+// 		}
+// 	} catch (err) {
+// 		console.log("READFILE=>" + err)
+// 	}
+// }
 
-function writeSession() {
-	try {
-		fs.writeFileSync("session.ss", JSON.stringify(userInfo))
-	} catch (err) {
-		console.log("WRITEFILE=>" + err)
-	}
-}
+// function writeSession() {
+// 	try {
+// 		fs.writeFileSync("session.ss", JSON.stringify(userInfo))
+// 	} catch (err) {
+// 		console.log("WRITEFILE=>" + err)
+// 	}
+// }
 //End

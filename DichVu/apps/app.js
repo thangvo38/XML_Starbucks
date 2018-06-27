@@ -3,7 +3,6 @@ var fs = require('fs')
 var sha256 = require('js-sha256');
 var xml2js = require('xml2js')
 var url = require('url')
-var service = require('../appService/appService')	
 var loadPageAction = require('./action/loadPageAction')
 
 var port = 3000
@@ -92,7 +91,7 @@ http.createServer((req, res) => {
 	if (err != null)
 		console.log('==> Error: ' + err)
 	else
-		console.log('Server is starting at port ' + port)
+		console.log('WebServer is starting at port ' + port)
 })
 
 function getHeaderType(ext) {

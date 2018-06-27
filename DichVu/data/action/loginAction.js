@@ -7,7 +7,7 @@ var sha256 = require('js-sha256')
 exports.call = (body,root) => {
     return new Promise((resolve, reject) => {
         var data = JSON.parse(body)
-        
+        console.log(body)
         var hashCode = ''
         var dir = root + `//TaiKhoan//taikhoan.xml`
         var users = fs.readFileSync(dir, "utf-8")
