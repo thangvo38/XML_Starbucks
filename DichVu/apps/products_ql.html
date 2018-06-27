@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.css">
     <script src="js/owl.carousel.js"></script>
-
+    <script src="js/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -88,7 +88,12 @@
                             <a href="">Home</a>
                         </li>
                         <li>
-                            <a href="">About</a>
+                            <a id="aboutClick">About</a>
+                            <script>
+                                $('#aboutClick').click(function(){
+                                    swal("About us:","1512446 - Lâm Quốc Quyền.\n\n1512526 - Võ Hữu Thắng.");
+                                })
+                            </script>
                         </li>
                     </ul>
                 </div>

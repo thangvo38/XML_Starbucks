@@ -21,7 +21,7 @@ exports.call = (body,root) => {
         // var hrTime = process.hrtime();
         // var billId = hrTime[0] * 1000000000 + hrTime[1];
 
-        var billId = date.replace('-',"") + shortid.generate();
+        var billId = data.date.replace('-',"") + shortid.generate();
         console.log(billId)
 
         var jsonTemplate = JSON.parse(common.TEMPLATE_BILL.replace(/\s/g, ""))

@@ -3,11 +3,8 @@ var fs = require('fs')
 var sha256 = require('js-sha256');
 var xml2js = require('xml2js')
 var url = require('url')
-var service = require('../appService/appService')
-var logOutAction = require('./action/logOutAction')
-var loginAction = require('./action/loginAction')
+var service = require('../appService/appService')	
 var loadPageAction = require('./action/loadPageAction')
-var changeDataAction = require('./action/changeDataAction')
 
 var port = 3000
 

@@ -25,8 +25,7 @@
     <script src="js/owl.carousel.js"></script>
 
     <!-- Sweet Alert -->
-    <script src="./sweetalert/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./sweetalert/sweetalert.css">
+    <script src="js/sweetalert.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -94,7 +93,13 @@
                             <a href="">Home</a>
                         </li>
                         <li>
-                            <a id="aboutClick">About</a>      
+                            <a id="aboutClick">About
+                                <script>
+                                        $('#aboutClick').click(function(){
+                                            swal("About us:","1512446 - Lâm Quốc Quyền.\n\n1512526 - Võ Hữu Thắng.");
+                                        })
+                                </script>  
+                            </a>    
                         </li>
                     </ul>
                 </div>

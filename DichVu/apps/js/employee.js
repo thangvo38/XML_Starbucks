@@ -3,7 +3,6 @@ var data = []; // 0-cafe ; 1-tea ; 2-frap ; 3-creme
 var num = 1;
 var total = 0;
 var sp = []
-var PhieuBanHang = [];
 
 function GetData()
 {
@@ -40,34 +39,6 @@ function GetData()
             data.push(tea);
             data.push(frap);
             data.push(creme);
-            GetPhieuBanHang();
-        }
-        else
-        if (http.status == 404)
-        {
-            console.log("Can't read file from server")
-        }
-    }
-
-    http.send()
-}
-
-function GetPhieuBanHang()
-{
-    var http = new XMLHttpRequest()
-    http.open("GET","http://localhost:3002/getPhieuBanHang", true)
-
-
-    http.onreadystatechange = function () {
-        if (http.readyState == 4 && http.status == 200)
-        {
-            console.log("Response received")
-            var xml = (new DOMParser()).parseFromString(http.response,'text/html')
-            temp = xml.getElementsByTagName("Phieu_Ban_Hang");      
-            for (var i = 0 ;i<temp.length;i++)
-            {
-                PhieuBanHang.push(temp[i])
-            }     
             loadAll(data);  
             var productname = document.getElementById("product_choose");
             for(var i = 0 ;i<data[0].length;i++)
@@ -92,6 +63,30 @@ function GetPhieuBanHang()
                 option.innerHTML = data[0][i].getAttribute("Ten")
                 productname.appendChild(option)
             }
+        }
+        else
+        if (http.status == 404)
+        {
+            console.log("Can't read file from server")
+        }
+    }
+
+    http.send()
+}
+
+function GetPhieuBanHang()
+{
+    var http = new XMLHttpRequest()
+    http.open("GET","http://localhost:3002/getPhieuBanHang", true)
+
+
+    http.onreadystatechange = function () {
+        if (http.readyState == 4 && http.status == 200)
+        {
+            console.log("Response received")
+            var xml = (new DOMParser()).parseFromString(http.response,'text/html')
+            temp = xml.getElementsByTagName("Phieu_Ban_Hang");      
+            
         }
         else
         if (http.status == 404)
@@ -390,6 +385,14 @@ $('#product_click').click(function(){
             var pro_total = document.createElement("td");
             pro_total.innerHTML = (parseInt(product.getAttribute("Gia_ban"))*parseInt(quantity));
             total += parseInt(product.getAttribute("Gia_ban"))*parseInt(quantity);
+            var pro_delBtn = document.createElement("td");
+            var delBtn = document.createElement("button")
+            delBtn.setAttribute("id","D"+product.getAttribute("Ma_so"))
+            delBtn.setAttribute("style","font-size:10px;height: 25px;")
+            delBtn.setAttribute("class","delButton btn btn-danger center-block ")
+            delBtn.setAttribute("type","button")
+            delBtn.innerHTML = "<b>X</b>";  
+            pro_delBtn.appendChild(delBtn)
             var row = document.createElement("tr");
             row.innerHTML = `<input class="proId" type="hidden" name="proId" value="${product.getAttribute("Ma_so")}" />`+
             `<input class="proQuantity" type="hidden" name="proQuantity" value="${quantity}" />`
@@ -398,6 +401,7 @@ $('#product_click').click(function(){
             row.appendChild(pro_price)
             row.appendChild(pro_quantity)
             row.appendChild(pro_total)
+            row.appendChild(pro_delBtn)
             cus_order.appendChild(row);
             var San_Pham = document.createElement("San_Pham");
             San_Pham.setAttribute("Gia_ban",product.getAttribute("Gia_ban"))
@@ -409,6 +413,7 @@ $('#product_click').click(function(){
         }
         var intotal = document.getElementById("customer_order_total");
         intotal.innerHTML=total;
+
         
     }
 })
@@ -447,6 +452,16 @@ $('#Buy_button').click(function(){
             	alert("Unexpected Error")
             },
             success: function(data){
+                var text = "";
+                for(var i =0;i<sp.length;i++)
+                {
+                    text+= (i+1) + ". " + sp[i].getAttribute("Ten") + " - ";
+                    text+= sp[i].getAttribute("So_luong") + "pcs - " + (parseInt(sp[i].getAttribute("So_luong"))*parseInt(sp[i].getAttribute("Gia_ban"))) +" VND"
+                    text+= "\n"
+                }
+                text += "--------------------------------------------------------------------------------\n"
+                text += "In total: " + document.getElementById("customer_order_total").innerHTML + " VND";
+                swal("Order Information:",text)
                 location.reload()
             }
 		})
@@ -489,4 +504,59 @@ function getCookie(cookie,cname) {
     }
 
     return '';
+}
+
+$(document).on('click', '.delButton', function () {
+    var id = this.id.slice(1,this.id.length);
+    console.log(id);
+    for(var i = 0;i<window.sp.length;i++)
+    {
+        if (window.sp[i].getAttribute("Ma_so") == id)
+        {
+            window.sp.splice(i,1);
+            reUpdateTable();
+            break;
+        }
+    }
+});
+
+function reUpdateTable()
+{
+    var cus_total =  document.getElementById("customer_order_total");
+    var cus_order = document.getElementById("customer_order");
+    var total = 0;
+    cus_order.innerHTML = "";
+    for(var i = 0;i<sp.length;i++)
+    {
+        var pro_no = document.createElement("td");
+        pro_no.innerHTML = i+1;
+        var pro_name = document.createElement("td");
+        pro_name.innerHTML = sp[i].getAttribute("Ten");
+        var pro_price = document.createElement("td");
+        pro_price.innerHTML = sp[i].getAttribute("Gia_ban")
+        var pro_quantity = document.createElement("td");
+        pro_quantity.innerHTML = sp[i].getAttribute("So_luong");
+        var pro_total = document.createElement("td");
+        pro_total.innerHTML = (parseInt(sp[i].getAttribute("Gia_ban"))*parseInt(sp[i].getAttribute("So_luong")));
+        total += (parseInt(sp[i].getAttribute("Gia_ban"))*parseInt(sp[i].getAttribute("So_luong")));
+        var pro_delBtn = document.createElement("td");
+        var delBtn = document.createElement("button")
+        delBtn.setAttribute("id","D"+sp[i].getAttribute("Ma_so"))
+        delBtn.setAttribute("style","font-size:10px;height: 25px;")
+        delBtn.setAttribute("class","delButton btn btn-danger center-block ")
+        delBtn.setAttribute("type","button")
+        delBtn.innerHTML = "<b>X</b>";  
+        pro_delBtn.appendChild(delBtn)
+        var row = document.createElement("tr");
+        row.innerHTML = `<input class="proId" type="hidden" name="proId" value="${sp[i].getAttribute("Ma_so")}" />`+
+        `<input class="proQuantity" type="hidden" name="proQuantity" value="${sp[i].getAttribute("So_luong")}" />`
+        row.appendChild(pro_no)
+        row.appendChild(pro_name)
+        row.appendChild(pro_price)
+        row.appendChild(pro_quantity)
+        row.appendChild(pro_total)
+        row.appendChild(pro_delBtn)
+        cus_order.appendChild(row);
+    }
+    cus_total.innerHTML=total;
 }

@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="css/owl.theme.default.css">
     <script src="js/owl.carousel.js"></script>
 
+    
+    <script src="js/sweetalert.min.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -94,7 +96,13 @@
                             <a href="">Home</a>
                         </li>
                         <li>
-                            <a href="">About</a>
+                            <a id="aboutClick">About</a>
+                            <script>
+                                $('#aboutClick').click(function(){
+                                    swal("About us:","1512446 - Lâm Quốc Quyền.\n\n1512526 - Võ Hữu Thắng.");
+                                })
+                            </script>
+                           
                         </li>
                     </ul>
                 </div>
@@ -178,11 +186,12 @@
                         <div class="panel-body"> 
                             <table class="table table-bordered">
                                 <thead>
-                                    <th>No.</th>
-                                    <th>Name</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
+                                    <th style="width: 5%">No.</th>
+                                    <th style="width: 50%">Name</th>
+                                    <th style="width: 15%">Price</th>
+                                    <th style="width: 10%">Quantity</th>
+                                    <th style="width: 15%">Total</th>
+                                    <th style="width: 5%">Delete</th>
                                 </thead>
                                 <form>
                                     <tbody id = "customer_order">
@@ -208,7 +217,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label">Phone:</label>
-                                                            <input id="cusPhone" name = "Phone" pattern="\S+" type="text" class="form-control" autocomplete="off" required>
+                                                            <input id="cusPhone" name = "Phone" pattern="\S+" type="number" class="form-control" autocomplete="off" required>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label">Address:</label>
