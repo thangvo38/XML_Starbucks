@@ -42,36 +42,6 @@ http.createServer((req, res) => {
 	var httpReq
 
 	switch (req.method) {
-		case "POST":
-			{
-				switch (req.url.split('?')[0]) {
-					//Bắt trường hợp đăng nhập
-					case '/login':
-						{
-							//Trường hợp là khách
-							if (cookie == "$") {
-								return loginAction.callGuest(res, cookie)
-								//Trường hợp là nviên/quảnlí
-							} else if (req.headers["username"] != null &&
-								req.headers["password"] != null &&
-								req.headers["manager"] != null) {
-								loginAction.callMember(req, res, cookie)
-							} else {
-								res.writeHead(404, 'Not found')
-								res.end("404 NOT FOUND")
-							}
-						}
-						break
-
-						//Trường hợp logout
-					case '/logout':
-						{
-							logOutAction.call(res, cookie)
-						}
-						break
-				}
-			}
-			break;
 		case "GET":
 			{
 				var req_url

@@ -2,6 +2,7 @@ var fs = require('fs')
 var xml2js = require('xml2js')
 var common = require('../const')
 var fileService = require('./fileService')
+var shortid = require('shortid')
 
 exports.call = (body,root) => {
     return new Promise((resolve, reject) => {
@@ -17,8 +18,11 @@ exports.call = (body,root) => {
         //     date: 
         // }
 
-        var hrTime = process.hrtime();
-        var billId = hrTime[0] * 1000000000 + hrTime[1];
+        // var hrTime = process.hrtime();
+        // var billId = hrTime[0] * 1000000000 + hrTime[1];
+
+        var billId = date.replace('-',"") + shortid.generate();
+        console.log(billId)
 
         var jsonTemplate = JSON.parse(common.TEMPLATE_BILL.replace(/\s/g, ""))
     

@@ -1,3 +1,3 @@
-<San_Pham Ma_so="SP_1" Ten="Hazelnut Macchiato" Gia_ban="50000" Tam_ngung="true" Mo_ta="Freshly steamed milk with vanilla syrup, marked with espresso and finished with hazelnut drizzle.">
+<San_Pham Ma_so="SP_1" Ten="Hazelnut Macchiato" Gia_ban="50000" Tam_ngung="false" Mo_ta="Freshly steamed milk with vanilla syrup, marked with espresso and finished with hazelnut drizzle.">
   <Loai_SP Ma_Loai="CAFE" Ten_Loai="Coffee"/>
 </San_Pham>

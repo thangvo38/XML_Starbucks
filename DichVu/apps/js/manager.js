@@ -76,18 +76,24 @@ function CreateTable(xml){
 				break
 		}
 
+		var pic_dir = "img/products/";
 		if(div != null){
 			var tr = document.createElement("tr")
 			var attr = [products[i].getAttribute("Ma_so"),
 			products[i].getAttribute("Ten"),
+			pic_dir + products[i].getAttribute("Ma_so") + ".jpg",
 			products[i].getAttribute("Gia_ban"),
 			products[i].getAttribute("Mo_ta"),
 			products[i].getAttribute("Tam_ngung")=="false" ? "Open" : "Closed"]
 			tr.setAttribute("id",attr[0])
 			// console.log(i)
-			for(var j =0;j<5;j++){
+			for(var j =0;j<6;j++){
 				var td = document.createElement("td")
-				td.innerHTML = attr[j]
+				if(j!=2){
+					td.innerHTML = attr[j]
+				} else {
+					td.innerHTML = `<img src="${attr[j]}" style="width:150px;height:150px" />`
+				}
 				tr.appendChild(td)
 			}
 
