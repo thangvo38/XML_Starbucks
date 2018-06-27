@@ -462,7 +462,9 @@ $('#Buy_button').click(function(){
                 text += "--------------------------------------------------------------------------------\n"
                 text += "In total: " + document.getElementById("customer_order_total").innerHTML + " VND";
                 swal("Order Information:",text)
-                location.reload()
+                .then( () => {
+                    location.reload()
+                })
             }
 		})
 

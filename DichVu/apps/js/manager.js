@@ -30,7 +30,9 @@ $(document).ready(function(){
 				text+= $("#formPrice").val() + " - " + ($("#formStatus").is(':checked') ? "true":"false")
 				text+= "\n"
                 swal("Changed Information:",text)
-                location.reload()
+                .then( () => {
+                    location.reload()
+                })
             }
 		})
 		
