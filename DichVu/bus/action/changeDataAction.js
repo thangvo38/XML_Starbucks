@@ -52,8 +52,6 @@ exports.call = (body, userInfo) => {
 
         httpReq.write(body)
         httpReq.end()
-
-        return
     });
 
 }

@@ -157,22 +157,23 @@ http.createServer((req, res) => {
 												console.log(cacheProducts["DanhSach"]["San_Pham"][i])
 												break
 											}
-										}
-
-										res.writeHeader(200, {
-											'Content-Type': 'text/plain',
-											'Access-Control-Allow-Origin': '*'
-										})
-										res.end("Data Changed")
-										return
+										}				
 									}
+
+									res.writeHeader(200, {
+										'Content-Type': 'text/plain',
+										'Access-Control-Allow-Origin': '*'
+									})
+									res.end("Data Changed")
+									return
+
 								})
 								.catch(err => {
 									res.writeHeader(404, {
 										'Content-Type': 'text/plain',
 										'Access-Control-Allow-Origin': '*'
 									})
-									res.write(err)
+									res.write(err.toString())
 									res.end()
 									return
 								})
@@ -226,17 +227,17 @@ http.createServer((req, res) => {
 					{
 						if (cacheProducts != null) {
 							console.log("Cache is not NULL")
-							// var builder = new xml2js.Builder({
-							// 	headless: true
-							// });
-							// var xml = builder.buildObject(cacheProducts);
+							var builder = new xml2js.Builder({
+								headless: true
+							});
+							var xml = builder.buildObject(cacheProducts);
 
 							res.setHeader("Access-Control-Allow-Origin", '*')
 							res.writeHeader(200, {
 								'Content-Type': 'text/plain',
 								'Access-Control-Allow-Origin': '*'
 							})
-							res.end(cacheProducts)
+							res.end(xml)
 							return
 						}
 
@@ -245,25 +246,27 @@ http.createServer((req, res) => {
 						getDataAction.call()
 						.then(result => {
 							//Lưu vào cache
-							// var parser = new xml2js.Parser({
-							// 	explicitArray: false
-							// })
-							// parser.parseString(result, function (err, xml) {
-							// 	cacheProducts = xml
-							// 	res.writeHeader(200, {
-							// 		'Content-Type': 'text/plain',
-							// 		'Access-Control-Allow-Origin': '*'
-							// 	})
-							// 	res.end(result)
-							// 	return
-							// })
-							cacheProducts = result
-							res.writeHeader(200, {
-								'Content-Type': 'text/plain',
-								'Access-Control-Allow-Origin': '*'
+							var parser = new xml2js.Parser({
+								explicitArray: false
 							})
-							res.end(result)
-							return
+
+							parser.parseString(result, function (err, xml) {
+								cacheProducts = xml
+								res.writeHeader(200, {
+									'Content-Type': 'text/plain',
+									'Access-Control-Allow-Origin': '*'
+								})
+								res.end(result)
+								return
+							})
+
+							// cacheProducts = result
+							// res.writeHeader(200, {
+							// 	'Content-Type': 'text/plain',
+							// 	'Access-Control-Allow-Origin': '*'
+							// })
+							// res.end(result)
+							// return
 						})
 						.catch(err => {
 							res.writeHeader(404, {
