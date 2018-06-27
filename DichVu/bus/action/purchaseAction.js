@@ -54,7 +54,7 @@ exports.call = (body, userInfo) => {
                     return
                 }
                 console.log("Success")
-                resolve(JSON.stringify(data))
+                resolve(dalBody)
                 return
             })
         })

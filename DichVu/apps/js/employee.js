@@ -74,30 +74,6 @@ function GetData()
     http.send()
 }
 
-function GetPhieuBanHang()
-{
-    var http = new XMLHttpRequest()
-    http.open("GET","http://localhost:3002/getPhieuBanHang", true)
-
-
-    http.onreadystatechange = function () {
-        if (http.readyState == 4 && http.status == 200)
-        {
-            console.log("Response received")
-            var xml = (new DOMParser()).parseFromString(http.response,'text/html')
-            temp = xml.getElementsByTagName("Phieu_Ban_Hang");      
-            
-        }
-        else
-        if (http.status == 404)
-        {
-            console.log("Can't read file from server")
-        }
-    }
-
-    http.send()
-}
-
 function showData(Data,num)
 {
     var pic_dir = "img/products/";
@@ -442,8 +418,6 @@ $('#Buy_button').click(function(){
             date: getCurrentDay()
         }
 
-        console.log(data)
-
         $.ajax({
             type:"POST",
 			url: "http://localhost:3001/purchase",
@@ -453,14 +427,18 @@ $('#Buy_button').click(function(){
             },
             success: function(data){
                 var text = "";
-                for(var i =0;i<sp.length;i++)
+                var totalCost = 0;
+
+                var billSp = data.getElementsByTagName("San_Pham");
+                for(var i =0;i<billSp.length;i++)
                 {
                     text+= (i+1) + ". " + sp[i].getAttribute("Ten") + " - ";
                     text+= sp[i].getAttribute("So_luong") + "pcs - " + (parseInt(sp[i].getAttribute("So_luong"))*parseInt(sp[i].getAttribute("Gia_ban"))) +" VND"
                     text+= "\n"
+                    totalCost += sp[i].getAttribute("Gia_ban")
                 }
                 text += "--------------------------------------------------------------------------------\n"
-                text += "In total: " + document.getElementById("customer_order_total").innerHTML + " VND";
+                text += "In total: " + totalCost + " VND";
                 swal("Order Information:",text)
                 .then( () => {
                     location.reload()
@@ -510,7 +488,6 @@ function getCookie(cookie,cname) {
 
 $(document).on('click', '.delButton', function () {
     var id = this.id.slice(1,this.id.length);
-    console.log(id);
     for(var i = 0;i<window.sp.length;i++)
     {
         if (window.sp[i].getAttribute("Ma_so") == id)

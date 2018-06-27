@@ -29,10 +29,6 @@ exports.call = (body, userInfo) => {
             response.on('data', function (chuck) {
                 dalBody += chuck
             })
-
-          
-
-
             //Trường hợp tài khoản hợp lệ
             response.on('end', function () {
 

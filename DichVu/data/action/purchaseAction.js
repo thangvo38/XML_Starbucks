@@ -90,7 +90,7 @@ exports.call = (body,root) => {
                     reject(common.ERROR_CANNOT_WRITE_FILE)
                     return
                 }
-
+                console.log(billXml.toString())
                 resolve(billXml.toString())
                 return
             })

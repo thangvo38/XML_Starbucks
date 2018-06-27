@@ -31,7 +31,7 @@ $(document).ready(function(){
             success: function(data){
 				var text = "";
 				text+= id + " - ";
-				text+= checkNum + " - " + status
+				text+= checkNum + " - " + (status == true ? "Closed" : "Open")
 				text+= "\n"
                 swal("Product Info Updated",text)
                 .then( () => {

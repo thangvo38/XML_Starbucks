@@ -94,7 +94,7 @@ http.createServer((req, res) => {
 								.then(result => {
 									console.log("Success")
 									res.writeHeader(200, {
-										'Content-Type': 'text/xml',
+										'Content-Type': 'text/plain',
 										'Access-Control-Allow-Origin': '*'
 									})
 									res.end(result)

@@ -11,13 +11,13 @@ jQuery(document).ready(function($){
             type:"POST",
             data: JSON.stringify(body),
             error: function(error){
-                swal(error.toString(),text).then(()=>{
+                swal("",error.responseText,"error").then(()=>{
                     location.reload()
                 })
             },
             success: function(data){
                 document.cookie = "session=$" //đánh dấu tài khoản khách
-                location.reload()             
+                location.reload()           
             }
         })
 	})
@@ -33,8 +33,8 @@ jQuery(document).ready(function($){
             url: loginURL,
             type:"POST",
             data: JSON.stringify(jBody),
-            error: function(error){
-                swal(error.toString(),text).then(()=>{
+            error:function (error) {
+                swal("",error.responseText,"error").then(()=>{
                     location.reload()
                 })
             },
@@ -60,7 +60,7 @@ jQuery(document).ready(function($){
             type:"POST",
             data: JSON.stringify(jBody),
             error: function(error){
-                swal(error.toString(),text).then(()=>{
+                swal("",error.responseText,"error").then(()=>{
                     location.reload()
                 })
             },

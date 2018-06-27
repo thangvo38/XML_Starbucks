@@ -82,7 +82,8 @@ http.createServer((req, res) => {
 										'Content-Type': 'text/plain',
 										'Access-Control-Allow-Origin': '*'
 									})
-									res.end(err.toString());
+									res.write(err)
+									res.end()
 									return
 								})
 						})
@@ -122,7 +123,8 @@ http.createServer((req, res) => {
 									'Content-Type': 'text/plain',
 									'Access-Control-Allow-Origin': '*'
 								})
-								res.end("Session removed")
+								res.write("Session removed")
+								res.end()
 								return
 							}
 						})
@@ -170,7 +172,8 @@ http.createServer((req, res) => {
 										'Content-Type': 'text/plain',
 										'Access-Control-Allow-Origin': '*'
 									})
-									res.end(err)
+									res.write(err)
+									res.end()
 									return
 								})
 
@@ -191,11 +194,13 @@ http.createServer((req, res) => {
 						req.on('end', () => {
 							purchaseAction.call(body, userInfo)
 								.then(result => {
+									console.log("SUCCAF: " + result)
 									res.writeHeader(200, {
 										'Content-Type': 'text/xml',
 										'Access-Control-Allow-Origin': '*'
 									})
-									res.end(result)
+									res.write(result)
+									res.end()
 									return
 								})
 								.catch(err => {
@@ -203,7 +208,8 @@ http.createServer((req, res) => {
 										'Content-Type': 'text/plain',
 										'Access-Control-Allow-Origin': '*'
 									})
-									res.end(err)
+									res.write(err)
+									res.end()
 									return
 								})
 						})
