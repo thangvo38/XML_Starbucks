@@ -3,7 +3,6 @@ var data = []; // 0-cafe ; 1-tea ; 2-frap ; 3-creme
 var num = 1;
 var total = 0;
 var sp = []
-
 function GetData()
 {
     var http = new XMLHttpRequest()
@@ -345,7 +344,7 @@ $('#product_click').click(function(){
                 var product_row = cus_order.getElementsByTagName("tr")[i];
                 product_row.getElementsByTagName("td")[3].innerHTML = parseInt(product_row.getElementsByTagName("td")[3].innerHTML) + parseInt(quantity) 
                 product_row.getElementsByTagName("td")[4].innerHTML = parseInt(product.getAttribute("Gia_ban"))* parseInt(product_row.getElementsByTagName("td")[3].innerHTML)
-
+                document.getElementsByClassName("proQuantity")[i].value = parseInt(product_row.getElementsByTagName("td")[3].innerHTML)
                 break;
             }
         }

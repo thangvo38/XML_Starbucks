@@ -1,1 +1,8 @@
-<Danh_Sach_Phieu_Ban_Hang></Danh_Sach_Phieu_Ban_Hang>
+<Danh_Sach_Phieu_Ban_Hang>
+  <Phieu_Ban_Hang MaPhieu="ry2ofUWfm" Ngay="2018-06-28" HoTen="Donald Trump" DienThoai="1900562151" DiaChi="1600 Pennsylvania Ave NW, Washington, DC 20500, Hoa Kỳ" HoTenNhanVien="Lâm Quốc Quyền" TongTien="1840000">
+    <Danh_Sach_San_Pham>
+      <San_Pham Ma_so="SP_1" Ten="Hazelnut Macchiato" So_luong="20" Gia_ban="50000"/>
+      <San_Pham Ma_so="SP_7" Ten="Freshly brewed coffee" So_luong="20" Gia_ban="42000"/>
+    </Danh_Sach_San_Pham>
+  </Phieu_Ban_Hang>
+</Danh_Sach_Phieu_Ban_Hang>
