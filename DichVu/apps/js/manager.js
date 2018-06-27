@@ -51,7 +51,7 @@ function SendDataRequest(){
         if (http.readyState == 4 && http.status == 200)
         {
             console.log("Response received")
-            var xml = (new DOMParser()).parseFromString(http.response,'text/xml')
+			var xml = (new DOMParser()).parseFromString(http.response,'text/xml')
             CreateTable(xml)
         }
         else

@@ -25,7 +25,6 @@ exports.generateProductListXml = (root) => {
         data += fs.readFileSync(file_dir,"utf-8");
     });
     data += "</DanhSach>"
-
     return data
 }
 

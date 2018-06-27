@@ -226,16 +226,17 @@ http.createServer((req, res) => {
 					{
 						if (cacheProducts != null) {
 							console.log("Cache is not NULL")
-							var builder = new xml2js.Builder({
-								headless: true
-							});
-							var xml = builder.buildObject(cacheProducts);
+							// var builder = new xml2js.Builder({
+							// 	headless: true
+							// });
+							// var xml = builder.buildObject(cacheProducts);
+
 							res.setHeader("Access-Control-Allow-Origin", '*')
 							res.writeHeader(200, {
 								'Content-Type': 'text/plain',
 								'Access-Control-Allow-Origin': '*'
 							})
-							res.end(xml)
+							res.end(cacheProducts)
 							return
 						}
 
@@ -244,27 +245,25 @@ http.createServer((req, res) => {
 						getDataAction.call()
 						.then(result => {
 							//Lưu vào cache
-							if (cacheProducts == null) {
-								var parser = new xml2js.Parser({
-									explicitArray: false
-								})
-								parser.parseString(result, function (err, xml) {
-									cacheProducts = xml
-									res.writeHeader(200, {
-										'Content-Type': 'text/plain',
-										'Access-Control-Allow-Origin': '*'
-									})
-									res.end(result)
-									return
-								})
-							} else {
-								res.writeHeader(200, {
-									'Content-Type': 'text/plain',
-									'Access-Control-Allow-Origin': '*'
-								})
-								res.end(result)
-								return
-							}
+							// var parser = new xml2js.Parser({
+							// 	explicitArray: false
+							// })
+							// parser.parseString(result, function (err, xml) {
+							// 	cacheProducts = xml
+							// 	res.writeHeader(200, {
+							// 		'Content-Type': 'text/plain',
+							// 		'Access-Control-Allow-Origin': '*'
+							// 	})
+							// 	res.end(result)
+							// 	return
+							// })
+							cacheProducts = result
+							res.writeHeader(200, {
+								'Content-Type': 'text/plain',
+								'Access-Control-Allow-Origin': '*'
+							})
+							res.end(result)
+							return
 						})
 						.catch(err => {
 							res.writeHeader(404, {
