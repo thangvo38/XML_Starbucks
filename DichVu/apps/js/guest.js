@@ -54,8 +54,28 @@ function showData(Data,num)
     var row = document.createElement("div");
     row.setAttribute("class","row");
     var container_all = document.createElement("div")
+    var endOfArray = false;
     for(var i = 0 ;i<Data[num].length;i++)
     {  
+        while (1)
+        {
+            if (Data[num][i].getAttribute("Tam_ngung") == "true")
+            {
+                i++;
+                if (i >= Data[num].length)
+                {
+                    endOfArray = true;
+                    break;
+                }
+            }   
+            else{
+                break;
+            }
+        }
+
+        if(endOfArray)
+            break;
+
         if (count > 4)
         {
             container_all.appendChild(row);
