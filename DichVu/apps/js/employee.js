@@ -526,7 +526,7 @@ function reUpdateTable()
 {
     var cus_total =  document.getElementById("customer_order_total");
     var cus_order = document.getElementById("customer_order");
-    var total = 0;
+    total = 0;
     cus_order.innerHTML = "";
     for(var i = 0;i<sp.length;i++)
     {
