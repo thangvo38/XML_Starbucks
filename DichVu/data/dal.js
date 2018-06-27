@@ -3,6 +3,9 @@ var fs = require('fs')
 var xml2js = require('xml2js')
 var sha256 = require('js-sha256');
 var updateProductAction = require('./action/updateProductAction')
+var loginAction = require('./action/loginAction')
+var purchaseAction = require('./action/purchaseAction')
+
 var port = 3002
 
 http.createServer((req,res)=>{
@@ -11,33 +14,32 @@ http.createServer((req,res)=>{
 		case "POST":
 			switch(req.url){
 				case "/login":{
-					var hashCode = ''
-					var users = fs.readFileSync("./DuLieu/TaiKhoan/taikhoan.xml","utf-8")
-					var parser = new xml2js.Parser()
-	    			parser.parseString(users,function(err,result){
-	    				console.log(JSON.stringify(result))
-	    				var userList = result['DanhSachTaiKhoan']['TaiKhoan']
-	    				for(var i = 0;i<userList.length;i++){
-	    					var user = userList[i]['$']
-	    					if(user.id == req.headers["username"] 
-	    						&& user.password == req.headers["password"] && user.QuanLi == req.headers["manager"]){
-	    						var isManager = (user.QuanLi == 'true') ? '1' : '0'
-	    						console.log("Is Manager: " + isManager)
-	    						hashCode = isManager + sha256(req.headers["username"] + req.headers["password"])
-	    						break
-	    					}
-	    				}
+					var body = ''
+					req.on('data',chunk=>{
+						body+=chunk
+					})
 
-	    				if(hashCode == ''){
-	    					res.writeHeader(404, {'Content-Type': 'text/plain'})
-	                    	res.end("User doesn't exist")
-	                    	return
-	    				}
-
-		    			res.writeHeader(200, {'Content-Type': 'text/plain'})
-		                res.end(hashCode)
-		                return
-	    			})
+					req.on('end',()=>{
+						loginAction.call(body,__dirname+'/DuLieu')
+						.then(result=>{
+							console.log("Login done")
+							res.writeHeader(200, {
+								'Content-Type': 'text/plain',
+								'Access-Control-Allow-Origin': '*'
+							})
+							res.end(result)
+							return
+						})
+						.catch(err=>{
+							console.log(err.toString())
+							res.writeHeader(404, {
+								'Content-Type': 'text/plain',
+								'Access-Control-Allow-Origin': '*'
+							})
+							res.end(err.toString())
+							return
+						})
+					})
 	    		}
 				break
 
@@ -89,6 +91,29 @@ http.createServer((req,res)=>{
 				}
 				break
 
+				case "/purchase":{
+					var body = ''
+					req.on('data',chunk=>{
+						body+=chunk
+					})
+
+					req.on('end',()=>{
+						purchaseAction.call(body,__dirname+'/DuLieu')
+						.then(result=>{
+							console.log("Success")
+							res.writeHeader(200, {'Content-Type': 'text/xml'})
+							res.end(result)
+							return
+						})
+						.catch(err=>{
+							console.log(err.toString())
+							res.writeHeader(404, {'Content-Type': 'text/plain'})
+							res.end(err.toString())
+							return
+						})
+					})
+				}
+				break
 			}
 		break
 		case "GET":

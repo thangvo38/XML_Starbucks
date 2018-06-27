@@ -1,35 +1,40 @@
+var loginURL = 'http://localhost:3001/login'
+
 jQuery(document).ready(function($){
 
 	$("a#guestSubmit").bind('click',function(){
         document.cookie = "session=$" //đánh dấu tài khoản khách
+        var body =  {
+            session : "$"
+        }
 		$.ajax({
-            url: '/login',
+            url: loginURL,
             type:"POST",
-            headers:{
-                "guest": true
-            },
+            data: JSON.stringify(body),
             error: function(error){
-            	alert("Unexpected Error")
+                alert(error.toString())
+                location.reload()
             },
             success: function(data){
                 location.reload()
-                // $("html").empty();
-                // $("html").append(data);
             }
         })
 	})
 
 	$("#staffSubmit").click(function(){
+        var jBody = {
+            "username" : $("#staffLoginID").val(),
+            "password": $("#staffLoginPassword").val(),
+            "manager" : false
+        }
+
         $.ajax({
-            url: '/login',
+            url: loginURL,
             type:"POST",
-            headers: {
-                "username" : $("#staffLoginID").val(),
-                "password": $("#staffLoginPassword").val(),
-                "manager" : false
-            },
+            data: JSON.stringify(jBody),
             error: function(error){
-            	alert("Wrong Username or Password")
+                alert(error.toString())
+                location.reload()
             },
             success: function(data){
                 document.cookie = "session=" + data
@@ -39,16 +44,19 @@ jQuery(document).ready(function($){
     })
 
     $("#adminSubmit").click(function(){
+        var jBody =  {
+            "username" : $("#adminLoginID").val(),
+            "password": $("#adminLoginPassword").val(),
+            "manager" : true
+        }
+
         $.ajax({
-            url: '/login',
+            url: loginURL,
             type:"POST",
-            headers: {
-                "username" : $("#adminLoginID").val(),
-                "password": $("#adminLoginPassword").val(),
-                "manager" : true
-            },
+            data: JSON.stringify(jBody),
             error: function(error){
-            	alert("Wrong Username or Password")
+                alert(error.toString())
+                location.reload()
             },
             success: function(data){
                 alert("Logged In")

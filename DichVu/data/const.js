@@ -4,5 +4,22 @@ module.exports = {
     ERROR_CANNOT_WRITE_FILE : "Cannot Write File",
     ERROR_CANNOT_CONNECT :  "Cannot Connect To Server",
     ERROR_CANNOT_PARSE : "Cannot parse data",
-    SUCCESS_EDIT_FILE : "Succesfully Edited File"
+    SUCCESS_EDIT_FILE : "Succesfully Edited File",
+    ERROR_NO_USER: "User Doesn't Exist",
+    TEMPLATE_BILL : `{"Phieu_Ban_Hang":{
+        "$":{
+            "MaPhieu":"",
+            "Ngay":"",
+            "HoTen":"",
+            "DienThoai":"",
+            "DiaChi":"",
+            "HoTenNhanVien":"",
+            "TongTien":""
+        },
+        "Danh_Sach_San_Pham":{
+            "San_Pham":[]
+        }
+        }
+    }`
+
 }

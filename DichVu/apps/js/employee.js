@@ -297,8 +297,8 @@ $('#product_click').click(function(){
             pro_total.innerHTML = (parseInt(product.getAttribute("Gia_ban"))*parseInt(quantity));
             total += parseInt(product.getAttribute("Gia_ban"))*parseInt(quantity);
             var row = document.createElement("tr");
-            row.innerHTML = `<input type="hidden" name="proId" value="${product.getAttribute("Ma_so")}" />`+
-            `<input type="hidden" name="proQuantity" value="${quantity}" />`
+            row.innerHTML = `<input class="proId" type="hidden" name="proId" value="${product.getAttribute("Ma_so")}" />`+
+            `<input class="proQuantity" type="hidden" name="proQuantity" value="${quantity}" />`
             row.appendChild(pro_no)
             row.appendChild(pro_name)
             row.appendChild(pro_price)
@@ -323,26 +323,40 @@ $('#Buy_button').click(function(){
     if(total == 0)
         return;
     else{
-        var DonHang = document.createElement("Phieu_Ban_Hang");
-        DonHang.setAttribute("TongTien",total);
-        DonHang.setAttribute("HoTenNhanVien","Nguyễn Văn A");
-        DonHang.setAttribute("Ten",$('#cusName').val())
-        DonHang.setAttribute("DienThoai",$('#cusPhone').val())
-        DonHang.setAttribute("DiaChi",$('#cusAddress').val())
-        DonHang.setAttribute("Ngay",getCurrentDay())
-        DonHang.setAttribute("MaPhieu","P_" + (PhieuBanHang.length+1))
+        var ids = []
+        $("input.proId").each(function(){
+            ids.push($(this).val())
+        })
 
-        var DSSP = document.createElement("Danh_Sach_San_Pham")
+        var quans = []
+        $("input.proQuantity").each(function(){
+            quans.push($(this).val())
+        })
 
-        for(var i = 0;i<sp.length;i++)
-        {
-            DSSP.appendChild(sp[i])
+        var data = {
+            session: getCookie(document.cookie,"session"),
+            id: ids,
+            quantity: quans,
+            cusName : $('#cusName').val(),
+            cusPhone : $('#cusPhone').val(),
+            cusAddress: $('#cusAddress').val(),
+            date: getCurrentDay()
         }
-        DonHang.appendChild(DSSP)
-        PhieuBanHang.push(DonHang);
 
-        console.log(DonHang)
-        rewritePhieuBanHang(PhieuBanHang)
+        console.log(data)
+
+        $.ajax({
+            type:"POST",
+			url: "http://localhost:3001/purchase",
+			data: JSON.stringify(data),
+            error: function(error){
+            	alert("Unexpected Error")
+            },
+            success: function(data){
+                location.reload()
+            }
+		})
+
     }
 })
 
@@ -361,11 +375,25 @@ function getCurrentDay()
         mm = '0'+mm
     } 
 
-    today = dd + '-' + mm + '-' + yyyy;
+    today = yyyy + '-' + mm + '-' + dd;
     return today;
 }
 
-function rewritePhieuBanHang(PhieuBanHang)
-{
-   
+//Get Cookie
+function getCookie(cookie,cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+
+    return '';
 }
+//End

@@ -6,17 +6,34 @@ exports.call = (body, userInfo) => {
     return new Promise((resolve, reject) => {
         var data = JSON.parse(body)
 
+        // data = {
+        //     session: ,
+        //     id: [],
+        //     quantity: [],
+        //     cusName : ,
+        //     cusPhone : ,
+        //     date: 
+        // }
+
         //Kiểm tra session
-        if (sessionAction.check(data.session, userInfo) === null) {
+        console.log("BUS: kiem tra session")
+        console.log(JSON.stringify(userInfo))
+        console.log(JSON.stringify(data))
+        var findInfo = sessionAction.check(data.session, userInfo)
+        if (findInfo === null) {
             reject(common.ERROR_NO_SESSION);
             return
         }
+
+        
+        data.userInfo = findInfo
+        console.log("BUS: data.userInfo = " + data.userInfo)
 
         //Gọi lên DAL để chỉnh sửa
         var options = {
             host: 'localhost',
             port: 3002,
-            path: "/changedata",
+            path: "/purchase",
             method: "POST",
             headers: {
                 'Content-Type': 'text/plain',
@@ -29,13 +46,13 @@ exports.call = (body, userInfo) => {
             response.on('data', (chunk) => {
                 dalBody += chunk;
             })
-            
+
             response.on('end', function () {
                 if(response.statusCode != 200){
                     console.log(common.ERROR_CANNOT_READ_FILE)
                     reject(common.ERROR_CANNOT_READ_FILE)
+                    return
                 }
-
                 console.log("Success")
                 resolve(JSON.stringify(data))
                 return
@@ -49,10 +66,9 @@ exports.call = (body, userInfo) => {
             return
         })
 
+        body = JSON.stringify(data)
         httpReq.write(body)
         httpReq.end()
-
-        return
-    });
-
+        
+    })
 }
