@@ -7,7 +7,8 @@ exports.call = (body, userInfo) => {
         var data = JSON.parse(body)
 
         //Kiểm tra session
-        if (sessionAction.check(data.session, userInfo) === null) {
+        var findInfo = sessionAction.check(data.session, userInfo)
+        if (findInfo === null || findInfo.session[0] == "0") {
             reject(common.ERROR_NO_SESSION);
             return
         }
